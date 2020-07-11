@@ -5,6 +5,8 @@ ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3'
+# bcryptを追加(最先端のハッシュ関数。has_secure_passwordを使ってパスワードをハッシュ化するため)
+gem 'bcrypt',         '~>3.1.13'
 #Bootstrapを追加
 gem 'bootstrap-sass', '~>3.4.1'
 # Use Puma as the app server
