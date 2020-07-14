@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     #@user = User.new(params[:user]) ←安全性× Forbidden Attribute Errorが出る
     if @user.save
+      log_in @user
       flash[:success] = "インスタグラムへようこそ！"
       redirect_to @user
       #上記は、redirect_to user_url(@user.id)と同じ

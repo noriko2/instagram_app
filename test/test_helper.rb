@@ -13,4 +13,12 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
   include ApplicationHelper
+
+
+  ## Helperメソッドは、テストから呼び出せないため、テスト用は、ここで定義する。
+  ## Helperメソッド名がテストヘルパーとSessionヘルパーで同じにならないようにする（リスト8.30）
+  # テストユーザーがログイン中の場合にtrueを返す
+  def is_logged_in?
+    !session[:user_id].nil?
+  end
 end
