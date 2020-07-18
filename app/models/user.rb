@@ -4,8 +4,11 @@ class User < ApplicationRecord
   #before_save { self.email = self.email.downcase }
   before_save {self.email.downcase!} #上記と同じ意味。破壊的メソッド
 
-  #nameカラムのバリデーション
-  validates :name, presence: true,
+  #full_nameカラムのバリデーション
+  validates :full_name, presence: true,
+                     length: { maximum: 50}
+  #user_nameカラムのバリデーション
+  validates :user_name, presence: true,
                      length: { maximum: 50}
 
   #emailカラムのバリデーション

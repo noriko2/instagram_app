@@ -26,6 +26,6 @@ class UsersController < ApplicationController
   private
     #ストロングパラメーターを定義(安全性のため、入力内容の制限)
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:full_name, :user_name, :email, :password, :password_confirmation)
     end
 end
