@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  #POST /users ==> createアクション
   def create
     @user = User.new(user_params)
     #@user = User.new(params[:user]) ←安全性× Forbidden Attribute Errorが出る

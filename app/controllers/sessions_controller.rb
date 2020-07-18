@@ -7,6 +7,8 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       log_in(user)
+         #remember(user) --- sessions_helperで定義したメソッド
+      params[:session][:remember_me] == "1" ? remember(user):forget(user) #リスト９.２３
       flash[:success] = 'ログインしました'
       redirect_to(user) #user_url(user.id)の省略形
     else
@@ -17,7 +19,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out     #SessionsHelperで定義したメソッド
+       # log_out‥‥‥SessionsHelperで定義したメソッド
+       # if logged_in?‥‥‥連続ログアウトのバグの解消( リスト9.16 )
+    log_out if logged_in?
     redirect_to root_url
   end
+
 end

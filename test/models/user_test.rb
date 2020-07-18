@@ -84,4 +84,10 @@ class UserTest < ActiveSupport::TestCase
      assert_not @user.valid?
   end
 
+  test "authenticated? should return false for a user with nil digest" do
+        #ダイジェストが存在しない場合のauthenticated?のテスト
+        #記憶トークンを空欄のままにしているのは、(リスト 9.17)
+        #記憶トークンが使われる前にエラーが発生するので、記憶トークンの値は何でも構わないため
+    assert_not @user.authenticated?('')
+  end
 end
