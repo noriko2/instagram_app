@@ -9,8 +9,9 @@ class SessionsController < ApplicationController
       log_in(user)
          #remember(user) --- sessions_helperで定義したメソッド
       params[:session][:remember_me] == "1" ? remember(user):forget(user) #リスト９.２３
-      flash[:success] = 'ログインしました'
-      redirect_to(user) #user_url(user.id)の省略形
+      #flash[:success] = 'ログインしました'
+      redirect_back_or(user)  #sessions_helper.rbで定義したメソッド
+      #redirect_to(user) #user_url(user.id)の省略形
     else
       # flash.now‥‥1回目から0回目のリクエストまでに変更
       flash.now[:danger] = 'メールアドレスまたはパスワードが間違っています。'

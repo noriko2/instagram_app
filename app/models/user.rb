@@ -17,11 +17,14 @@ class User < ApplicationRecord
                       length: {maximum: 255},
                       format: { with: VALID_EMAIL_REGEX },
                       uniqueness: true
-  #uniqueness: true  ‥‥‥‥メールアドレスの大文字小文字を区別して一意性を担保
-  #uniqueness: { case_sensitive: false }‥メールアドレスの大文字小文字を区別しないで一意性を担保
+  # uniqueness: true  ‥‥‥‥メールアドレスの大文字小文字を区別して一意性を担保
+  # uniqueness: { case_sensitive: false }‥メールアドレスの大文字小文字を区別しないで一意性を担保
 
   has_secure_password
-  validates :password, presence: true, length: {minimum: 6}
+    # allow_nilオプションは、対象の値がnilの場合にバリデーションをスキップする。
+    # allow_nil: trueを付与することにより、ユーザー情報を編集する時は、password が nilでもバリデーションが通過できる。
+    # password新規作成時は、has_secure_passwordで passwordがpresence:trueのバリデーションかかる。
+  validates :password, presence: true, length: {minimum: 6}, allow_nil: true
 
 
   # 渡された文字列のハッシュ値を返す

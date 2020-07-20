@@ -4,3 +4,7 @@
   <%= image_tag("user_img.jpeg", alt: "user_img", width: "200px") %>
   <%= @user.user_name %>
 </h1>
+
+<p>
+  <%= link_to("プロフィールを編集", edit_user_path(current_user)) %>
+</p>

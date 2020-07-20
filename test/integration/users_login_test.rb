@@ -73,4 +73,28 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_empty cookies[:remember_token]
   end
 
+  test "successful edit with friendly forwarding" do
+    get edit_user_path(@user)
+    assert_equal session[:forwarding_url], "http://www.example.com" + edit_user_path(@user)
+    assert_redirected_to login_url
+    log_in_as(@user)
+    assert_redirected_to edit_user_path(@user)
+    assert_nil session[:forwarding_url]
+    full_name = "Foo Change"
+    user_name = "Change_123"
+    email = "change@sample.com"
+    patch user_path(@user), params: {user: {full_name: full_name,
+                                            user_name: user_name,
+                                                email: email,
+                                             password: '',
+                                             password_confirmation: ''}}
+
+    assert_not flash.empty?
+    assert_redirected_to @user
+    @user.reload
+    assert_equal full_name, @user.full_name
+    assert_equal user_name, @user.user_name
+    assert_equal email, @user.email
+  end
+
 end
