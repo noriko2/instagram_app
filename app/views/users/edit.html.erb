@@ -26,6 +26,15 @@
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
       <%= f.submit "更新する", class: "btn btn-primary" %>
+
     <% end %>
   </div>
 </div>
+
+<p>
+  <!-- admin権限管理者は、自分以外のユーザーを削除できる、　ろぐいん中のユーザーは自分のアカウントを削除できる-->
+  <% if (current_user.admin? && !current_user?(@user)) || (current_user?(@user) && !current_user.admin?) %>
+    <%= link_to "アカウントを削除", @user, method: :delete,
+              data: { confirm: "本当にアカウントを削除してもいいですか？"} %>
+  <% end %>
+<p>

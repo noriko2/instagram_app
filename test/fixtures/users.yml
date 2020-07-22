@@ -3,9 +3,36 @@ foo:
   user_name: Foo_123
   email: foobar@example.com
   password_digest: <%= User.digest('password') %>
+  admin: true
 
 wanko:
   full_name: Wawawan wanko
   user_name: Wanko_456
   email: wanko@example.com
   password_digest: <%= User.digest('password') %>
+
+archer:
+  full_name: Sterling Archer
+  user_name: Sterling
+  email: duchess@example.gov
+  password_digest: <%= User.digest('password') %>
+
+lana:
+  full_name: Lana Kane
+  user_name: Lana
+  email: hands@example.gov
+  password_digest: <%= User.digest('password') %>
+
+malory:
+  full_name: Malory Archer
+  user_name: Malory
+  email: boss@example.gov
+  password_digest: <%= User.digest('password') %>
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  full_name:  <%= "Full_name #{n}" %>
+  user_name:  <%= "User_name #{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+  password_digest: <%= User.digest('password') %>
+<% end %>
