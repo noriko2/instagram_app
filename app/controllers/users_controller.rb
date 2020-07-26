@@ -3,12 +3,17 @@ class UsersController < ApplicationController
       # logged_in_userはメソッドは下記 privateに定義
       # before_actionは、logged_in_userを先に書き、 correct_userを後で書く。
       #  ( correct_userはログインしているのを前提にしているため )
-  before_action :logged_in_user, only: [:edit, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_or_correct_user, only: :destroy
 
+  def index
+    @users = User.all
+  end
+
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.all
   end
 
   def new
@@ -58,16 +63,6 @@ class UsersController < ApplicationController
     end
 
       # beforeアクション
-      # ログイン済みユーザーかどうか確認
-    def logged_in_user
-        #logged_in? メソッドは、sessions.helperで定義したもの
-      unless logged_in?
-        store_location #リスト 10.31 (sessions_helper.rbで定義したメソッド)
-        flash[:danger] = "ログインしてください。"
-        redirect_to login_url
-      end
-    end
-
       # 正しいユーザーかどうか確認
     def correct_user
       @user = User.find(params[:id])

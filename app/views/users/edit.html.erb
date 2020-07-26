@@ -8,7 +8,7 @@
     <!--new.htmlとデータは同じだが、今回は @usersにデータが入っているため、PATCHリクエスト==> updateアクションとなる -->
     <!--Railsは、form_with(@user)を使ってフォームを構成すると、@user.new_record?がtrueのときにはPOSTを、falseのときにはPATCHを使う -->
     <%= form_with(model: @user, local: true) do |f| %>
-      <%= render 'shared/error_messages' %>
+      <%= render 'shared/error_messages', object: f.object %>
 
       <%= f.label :full_name, "フルネーム" %>
       <%= f.text_field :full_name, class: 'form-control' %>

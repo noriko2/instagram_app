@@ -7,6 +7,8 @@ ruby '2.6.3'
 gem 'rails', '~> 6.0.3'
 # bcryptを追加(最先端のハッシュ関数。has_secure_passwordを使ってパスワードをハッシュ化するため)
 gem 'bcrypt',         '~>3.1.13'
+#Faker gemを追加( 実際にいそうなユーザー名を作成するgem )
+gem 'faker',           '~>2.1.2'
 #Bootstrapを追加
 gem 'bootstrap-sass', '~>3.4.1'
 # Use Puma as the app server

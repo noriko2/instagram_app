@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # ユーザーがマイクロポストを複数所有する（has_many）関連付け
+  # dependent: :destroy --ユーザーが削除されたときに、そのユーザーが投稿したマイクロポストも一緒に削除する
+  has_many :microposts, dependent: :destroy
+
   attr_accessor :remember_token
 
   #before_save { self.email = self.email.downcase }
@@ -60,5 +64,16 @@ class User < ApplicationRecord
   # ユーザーのログイン情報を破棄する( remember_digestの値を nil にする)
   def forget
     self.update_attribute(:remember_digest, nil)
+  end
+
+
+  ## 試作feedの定義(リスト 13.46)
+  # 完全な実装は次章の「ユーザーをフォローする」を参照
+  def feed
+    # SQL文に変数を代入する場合は常にエスケープする習慣を身につける。
+      # 下記のコードで使われている疑問符は、セキュリティ上重要な役割をもつ。
+      # 疑問符があることで、SQLクエリに代入する前にidがエスケープされるため、
+      # SQLインジェクション（SQL Injection）呼ばれる深刻なセキュリティホールを避けることができる。
+    Micropost.where("user_id = ?", self.id)
   end
 end

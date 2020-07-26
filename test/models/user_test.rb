@@ -101,4 +101,14 @@ class UserTest < ActiveSupport::TestCase
         #記憶トークンが使われる前にエラーが発生するので、記憶トークンの値は何でも構わないため
     assert_not @user.authenticated?('')
   end
+
+  test "associated microposts should be destroyed" do
+    @user.save
+    @user.microposts.create!(content: "ユーザー削除に伴う投稿削除")
+    assert_difference "Micropost.count", -1 do
+      @user.destroy
+    end
+  end
+
+
 end
