@@ -5,6 +5,15 @@ ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3'
+
+#画像処理用のgemを追加
+ ## 1. $ brew install imagemagickをしてimagemagickをインストールする
+ ## image_processing--どうやって加工するか、オプション（指示）を与えるためのgem
+ ## mini_magick-------imagemagickをrailsで使えるようにするgem(画像を加工するためのgem)
+gem 'image_processing', '~>1.9.3'
+gem 'mini_magick', '~>4.9.5'
+# Active Storageバリデーション用のgemを追加
+gem 'active_storage_validations', '~>0.8.2'
 # bcryptを追加(最先端のハッシュ関数。has_secure_passwordを使ってパスワードをハッシュ化するため)
 gem 'bcrypt',         '~>3.1.13'
 #Faker gemを追加( 実際にいそうなユーザー名を作成するgem )

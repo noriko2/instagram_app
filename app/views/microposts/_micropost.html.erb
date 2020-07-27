@@ -5,6 +5,8 @@
   </span>
   <span class= "content">
     <%= micropost.content %>
+    <!--display_imageは、micropostモデルで定義したメソッド-->
+    <%= image_tag micropost.display_image if micropost.image.attached? %>
   </span>
   <span class= "timestamp">
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
