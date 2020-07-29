@@ -3,7 +3,7 @@ class UsersController < ApplicationController
       # logged_in_userはメソッドは下記 privateに定義
       # before_actionは、logged_in_userを先に書き、 correct_userを後で書く。
       #  ( correct_userはログインしているのを前提にしているため )
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_or_correct_user, only: :destroy
 
@@ -53,6 +53,21 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "アカウントを削除しました"
     redirect_to root_url
+  end
+
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.following
+    render 'show_follow'
+    #　デフォルトだと、follow.html.erbが返されるため、指定する
+  end
+
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers
+    render 'show_follow'
   end
 
 

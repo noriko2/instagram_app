@@ -17,7 +17,9 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     #--そのページのどこかにマイクロポストの投稿数が存在するのであれば、探し出してマッチできる
     assert_match @user.microposts.count.to_s, response.body
     @user.microposts.each do |micropost|
-      assert_match micropost.content, response.body
+      if micropost.image.attached?
+        assert_match micropost.display_image, response.body
+      end
     end
   end
 end

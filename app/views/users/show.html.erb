@@ -1,30 +1,49 @@
 <% provide(:title, @user.user_name)%>
 
-<h1>
-  <%= image_tag("user_img.jpeg", alt: "user_img", width: "200px") %>
-  <%= @user.user_name %>
-</h1>
+<section class="user_info">
+  <h1>
+    <%= image_tag("user_img.jpeg", alt: "user_img", width: "200px") %>
+    <%= @user.user_name %>
+  </h1>
+</section>
 
-<p>
-  <%= link_to("プロフィールを編集", edit_user_path(current_user) ) %>
-</p>
 
-<div class= "col-md-8">
+<section class="edit">
+  <p>
+    <% if current_user?(@user) %>
+      <%= link_to("プロフィールを編集", edit_user_path(current_user) ) %>
+    <% end %>
+  </p>
+</section>
+
+<!--フォローボタン、フォロー解除ボタンを表示-->
+<section class="follow_form">
+  <%= render 'follow_form' if logged_in? %>
+</section>
+
+
+<!--投稿合計数を表示-->
+<section class="microposts_count">
   <% if @user.microposts.any? %>
-    <h3>投稿 <%= @user.microposts.count %></h3>
-
-    <ol class= "microposts">
-      <% @microposts.each do |micropost| %>
-        <li id= "micropost-<%= micropost.id %>">
-          <span class= "content">
-            <%= micropost.content %>
-          </span>
-          <span class= "timestamp">
-            Posted <%= time_ago_in_words(micropost.created_at) %> ago.
-          </span>
-        </li>
-      <% end %>
-    </ol>
-
+    <h3>投稿 <%= @user.microposts.count %> 件</h3>
   <% end %>
-</div>
+</section>
+
+
+<!--フォロワーの統計情報を表示-->
+<section class="stats">
+  <%= render 'shared/stats' %>
+</section>
+
+
+<!--投稿写真を表示-->
+<% if @microposts.any? %>
+  <% @microposts.each do |micropost| %>
+    <ol id= "micropost-<%= micropost.id %>">
+      <span class= "content">
+        <!--display_imageは、micropostモデルで定義したメソッド-->
+        <%= image_tag micropost.display_image if micropost.image.attached? %>
+      </span>
+    </ol>
+  <% end %>
+<% end %>

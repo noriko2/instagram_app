@@ -3,6 +3,6 @@
   <%= link_to( user.user_name, user ) %>
   <% if current_user.admin? && !current_user?(user) %>
     <%= link_to "| アカウントを削除", user, method: :delete,
-           data: {confirm: "アカウントを削除して本当にいいですか"} %>
- <% end %>
+              data: {confirm: "アカウントを削除して本当にいいですか"} %>
+  <% end %>
 </li>
