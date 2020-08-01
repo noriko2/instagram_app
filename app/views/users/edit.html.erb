@@ -16,8 +16,33 @@
       <%= f.label :user_name, "ユーザーネーム" %>
       <%= f.text_field :user_name, class: 'form-control' %>
 
+      <%= f.label :website, "ウェブサイト" %>
+      <%= f.text_field :website, class: 'form-control' %>
+
+      <%= f.label :introducttion, "自己紹介" %>
+      <%= f.text_field :introduction, class: 'form-control' %>
+
+      <p>ーーー以下、非公開情報ーーーーーーーーーーーーー</p>
+
       <%= f.label :email, "メールアドレス" %>
       <%= f.text_field :email, class: 'form-control' %>
+
+      <%= f.label :phone, "電話番号" %>
+      <%= f.text_field :phone, class: 'form-control' %>
+
+      <%= f.label :gender, "性別" %>
+      <li>
+        <%= f.label :gender, "男性" %>
+        <%= f.radio_button :gender, 1 %>
+      </li>
+      <li>
+        <%= f.label :gender, "女性" %>
+        <%= f.radio_button :gender, 2 %>
+      </li>
+      <li>
+        <%= f.label :gender, "答えたくない" %>
+        <%= f.radio_button :gender, 3 %>
+      </li>
 
       <%= f.label :password, "パスワード" %>
       <%= f.password_field :password, class: 'form-control' %>

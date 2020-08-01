@@ -11,7 +11,9 @@
 <section class="edit">
   <p>
     <% if current_user?(@user) %>
-      <%= link_to("プロフィールを編集", edit_user_path(current_user) ) %>
+      <%= link_to( "プロフィールを編集", edit_user_path(current_user) ) %>
+      <br>
+      <%= link_to( "パスワードを変更", edit_password_path(current_user) ) %>
     <% end %>
   </p>
 </section>
@@ -47,3 +49,17 @@
     </ol>
   <% end %>
 <% end %>
+
+<!--自己紹介文-->
+<section class="user_introduction">
+  <% if @user.introduction %>
+    <%= @user.introduction %>
+  <% end %>
+</section>
+
+<!--ウェブサイト-->
+<section class="user_website">
+  <% if @user.website %>
+    <%= @user.website %>
+  <% end %>
+</section>

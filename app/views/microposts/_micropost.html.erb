@@ -5,7 +5,9 @@
   </span>
   <span class= "content">
     <!--display_imageは、micropostモデルで定義したメソッド-->
-    <%= image_tag micropost.display_image if micropost.image.attached? %>
+    <% if micropost.image.attached? %>
+      <%= link_to image_tag(micropost.display_image) , micropost_path(micropost.user) %>
+    <% end %>
     <%= micropost.content %>
   </span>
   <span class= "timestamp">

@@ -1,6 +1,9 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  #GoogleAnalytics （アクセス解析） gemで使用するトラッキング ID
+  GA.tracker = "UA-174161583-1"
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

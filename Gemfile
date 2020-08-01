@@ -6,6 +6,9 @@ ruby '2.6.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3'
 
+# Google Analytics (アクセス解析) を追加
+gem 'google-analytics-rails', '~>1.1.1'
+
 #画像処理用のgemを追加
  ## 1. $ brew install imagemagickをしてimagemagickをインストールする
  ## image_processing--どうやって加工するか、オプション（指示）を与えるためのgem
@@ -55,6 +58,9 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  #エラー画面をわかりやすく成形してくれるgem
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do

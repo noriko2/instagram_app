@@ -2,11 +2,14 @@
 <html>
   <head>
     <title><%= full_title(yield(:title)) %></title>
+    <meta name="description" content="Instagramアカウントを作成、またはアカウントにログイン ― クリエイティブな写真や動画を簡単に撮影・編集して、友達や家族とシェアしよう。">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <!-- GoogleAnalyticsでアクセス解析  -->
+    <%= analytics_init if Rails.env.production? %>
     <%= render 'layouts/shim' %>
   </head>
 
@@ -15,7 +18,7 @@
     <div class="container">
       <% flash.each do |message_type, message| %>
         <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-        <!-- 上記と同じ意味 (リスト7.29) 
+        <!-- 上記と同じ意味 (リスト7.29)
         <div class="alert alert-<%= message_type %>">
           <%= message %>
         </div>

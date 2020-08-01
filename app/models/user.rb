@@ -63,6 +63,11 @@ class User < ApplicationRecord
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
 
 
+  validates :website, presence: true, length: { maximum: 255 }, allow_nil: true
+  validates :introduction, presence: true, allow_nil: true
+  validates :phone, presence: true, allow_nil: true
+  validates :gender, presence: true, allow_nil: true
+
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
     #コストパラメータをテスト中は最小にし、本番環境ではしっかりと計算する

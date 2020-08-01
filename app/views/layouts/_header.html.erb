@@ -4,9 +4,9 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "About", about_path %></li>
         <% if logged_in? %>
-          <li><%= link_to "Users", users_path %></li>
+          <li><%= link_to "投稿", new_micropost_path %></li>
+          <li><%= link_to "ユーザー一覧", users_path %></li>
           <li class="dropdown">
             <a href='#' class="dropdown-toggle" data-toggle="dropdown">
               アカウント<span class="caret"></span>
