@@ -14,18 +14,22 @@ class MicropostsController < ApplicationController
   end
 
   def new
-    @micropost = current_user.microposts.build if logged_in?
+    if logged_in?
+      @micropost = current_user.microposts.build
+    end
   end
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
      # micropostオブジェクトのimageメソッドに添付された画像を追加（保存はしない）
      # --Actuve Storage APIのattachメソッドを使用
-    @micropost.image.attach(params[:micropost][:image])
-    if @micropost.save
+     #@micropost.image.attach(params[:micropost][:image])
+    if @micropost.image.present?
+      @micropost.save
       flash[:success] = "投稿が完了しました"
       redirect_to micropost_path(current_user)
     else
+      flash.now[:notice]= "画像を添付してください"
       render new_micropost_path
     end
   end

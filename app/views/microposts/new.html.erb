@@ -3,22 +3,26 @@
 
 <div class="row">
    <aside class="col-md-4">
-     <section class="user_info">
-　　　  <%= link_to image_tag("user_img.jpeg", alt: "user_img", width: "50px"), current_user %>
+     <section class="user_info_item">
+　　　  <%= link_to image_tag("user_img.jpeg", alt: "user_img", width: "130px"), current_user %>
        <h1><%= current_user.user_name %></h1>
      </section>
+
      <section class="micropost_form">
        <%= form_with(model: @micropost, local: true) do |f| %>
          <!--エラーがある場合は、表示する-->
          <%= render 'shared/error_messages', object: f.object %>
          <div class="field">
-           <%= f.text_area :content, placeholder: "Compose new micropost..." %>
+           <%= f.text_area :content, placeholder: "説明文を記入" %>
          </div>
-         <%= f.submit "投稿する", class: "btn btn-primary" %>
+
          <span class="image">
-           <%= f.file_field :image, accept: "image/jpeg, image/gif, image/png" %>
+           <%= f.file_field :image, accept: "image/jpeg, image/png" %>
          </span>
+
+          <%= f.submit "投稿する", class: "btn btn-primary" %>
        <% end %>
+
 
        <!--#リスト 13.67: jQueryでファイルサイズをチェック-->
        <script type="text/javascript">

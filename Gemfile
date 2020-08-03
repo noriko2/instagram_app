@@ -15,8 +15,13 @@ gem 'google-analytics-rails', '~>1.1.1'
  ## mini_magick-------imagemagickをrailsで使えるようにするgem(画像を加工するためのgem)
 gem 'image_processing', '~>1.9.3'
 gem 'mini_magick', '~>4.9.5'
+
+# carrierwaveの追加
+gem 'carrierwave' , '~> 2.0'
+
 # Active Storageバリデーション用のgemを追加
-gem 'active_storage_validations', '~>0.8.2'
+#gem 'active_storage_validations', '~>0.8.2'
+
 # bcryptを追加(最先端のハッシュ関数。has_secure_passwordを使ってパスワードをハッシュ化するため)
 gem 'bcrypt',         '~>3.1.13'
 #Faker gemを追加( 実際にいそうなユーザー名を作成するgem )
@@ -59,8 +64,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   #エラー画面をわかりやすく成形してくれるgem
-  gem 'better_errors'
-  gem 'binding_of_caller'
+  #gem 'better_errors'
+  #gem 'binding_of_caller'
 end
 
 group :test do

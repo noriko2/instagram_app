@@ -104,7 +104,8 @@ class UserTest < ActiveSupport::TestCase
 
   test "associated microposts should be destroyed" do
     @user.save
-    @user.microposts.create!(content: "ユーザー削除に伴う投稿削除")
+    image = Rack::Test::UploadedFile.new(Rails.root.join('app', 'assets', 'images', 'sample_image.jpeg'), 'image/jpeg')
+    @user.microposts.create!(content: "ユーザー削除に伴う投稿削除",image: image)
     assert_difference "Micropost.count", -1 do
       @user.destroy
     end

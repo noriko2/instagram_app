@@ -4,7 +4,8 @@ class MicropostTest < ActiveSupport::TestCase
 
   def setup
     @user = users(:foo)
-    @micropost = @user.microposts.build(content: "初めての投稿")
+    image = Rack::Test::UploadedFile.new(Rails.root.join('app', 'assets', 'images', 'sample_image.jpeg'), 'image/jpeg')
+    @micropost = @user.microposts.build(content: "初めての投稿", image: image)
   end
 
   test "should be valid" do
@@ -23,6 +24,11 @@ class MicropostTest < ActiveSupport::TestCase
 
   test "content should be at most 140 characters" do
     @micropost.content = "a" * 141
+    assert_not @micropost.valid?
+  end
+
+  test "image should be present" do
+    @micropost.image = ""
     assert_not @micropost.valid?
   end
 

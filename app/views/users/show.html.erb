@@ -38,18 +38,6 @@
 </section>
 
 
-<!--投稿写真を表示-->
-<% if @microposts.any? %>
-  <% @microposts.each do |micropost| %>
-    <ol id= "micropost-<%= micropost.id %>">
-      <span class= "content">
-        <!--display_imageは、micropostモデルで定義したメソッド-->
-        <%= image_tag micropost.display_image if micropost.image.attached? %>
-      </span>
-    </ol>
-  <% end %>
-<% end %>
-
 <!--自己紹介文-->
 <section class="user_introduction">
   <% if @user.introduction %>
@@ -63,3 +51,18 @@
     <%= @user.website %>
   <% end %>
 </section>
+
+<!--投稿写真を表示-->
+<% if @microposts.any? %>
+　<div class="flexbox">
+  <% @microposts.each do |micropost| %>
+    <div class="item">
+      <ol id= "micropost-<%= micropost.id %>">
+        <span class= "content">
+          <%= image_tag micropost.image.url(:medium) if micropost.image %>
+        </span>
+      </ol>
+    </div>
+  <% end %>
+  </div>
+<% end %>

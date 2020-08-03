@@ -11,19 +11,24 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     assert_select 'input[type=file]'
     # 無効な送信
     assert_no_difference 'Micropost.count' do
-      post microposts_path, params: { micropost: {content: ""} }
+      post microposts_path, params: { micropost: {content: "", image: ""} }
     end
-    assert_select 'div#error_explanation'
+    #assert_select 'div#error_explanation'
+
     # 有効な送信
     content = "有効な投稿"
       ## railsは関数 `fixture_file_upload`を持っている
       ## fixture_file_upload（ 'path'、 'mime-type'）を呼び出すことでテストファイルを取得できる
       ## JPEG画像のMIMEタイプは、image/jpeg
-    image = fixture_file_upload('test/fixtures/kitten.jpg','image/jpeg')
+
+    #これでも良い
+    #image = fixture_file_upload('app/assets/images/sample_image.jpeg','image/jpeg')
+    image = Rack::Test::UploadedFile.new(Rails.root.join('app', 'assets', 'images', 'sample_image.jpeg'), 'image/jpeg')
     assert_difference 'Micropost.count', 1 do
       post microposts_path, params: { micropost: {content: content, image: image} }
     end
-    assert assigns(:micropost).image.attached?
+    assert assigns(:micropost).content
+    assert assigns(:micropost).image
     assert_redirected_to micropost_path(@user)
     follow_redirect!
     assert_match content, response.body

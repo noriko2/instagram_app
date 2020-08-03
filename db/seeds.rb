@@ -11,7 +11,7 @@ User.create!(full_name: "Kanri Sya",
               password:             "foobar",
               password_confirmation: "foobar",
                  admin: true,
-          introduction: "管理人です。よろしくお願いたします。",
+          introduction: "管理人です。よろしくお願いします。",
                website: "https://www.sample.com",
                  phone: "09000000000",
                 gender: 2)
@@ -36,7 +36,8 @@ end
 users = User.order(:created_at).take(6)
 10.times do
   content = Faker::Lorem.sentence(word_count: 5)
-  users.each { |user| user.microposts.create!(content: content ) }
+  image = open("./app/assets/images/sample_image.jpeg")
+  users.each { |user| user.microposts.create!(content: content, image: image) }
   #image = open "#{Rails.root}/test/fixtures/kitten.jpg"
   #users.each { |user| user.microposts.create!(content: content, image: image)}
 end

@@ -252,3 +252,33 @@ span.image {
     display: block;
   }
 }
+
+
+/*個別マイページ */
+
+.item {
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive */
+ /*　画面サイズが600pxからはここを読み込む　*/
+@media ( min-width : 600px ){
+    .flexbox {
+    display: flex;
+    flex-wrap: wrap;
+    }
+  .item {
+    width: 30%;
+  }
+}
+
+/*新規投稿ページ */
+.user_info_item{
+  display: flex;
+}

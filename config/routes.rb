@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+
   #resources :users も含まれる
   #/users/1/following や /users/1/followers のURLを作成
   #HTTPリクエスト	URL	          アクション	   名前付きルート
