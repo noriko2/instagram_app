@@ -18,6 +18,8 @@ gem 'mini_magick', '~>4.9.5'
 
 # carrierwaveの追加
 gem 'carrierwave' , '~> 2.0'
+# Ralisでfog、CarrierWave経由でAWS-S3に画像をアップロードさせる場合は、fogではなくfog-awsを使う
+gem 'fog-aws'
 
 # Active Storageバリデーション用のgemを追加
 #gem 'active_storage_validations', '~>0.8.2'
