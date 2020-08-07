@@ -3,6 +3,7 @@ class RelationshipsController < ApplicationController
 
   def create
     @user = User.find(params[:followed_id])
+     #follow(other_user)メソッドは、models/user.rb で定義
     current_user.follow(@user)
         # RelationshipsコントローラでAjaxリクエストに対応
         #ブロック内のコードのうち、どちらか1行が実行される

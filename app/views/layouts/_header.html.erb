@@ -13,6 +13,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "マイページ", current_user %></li>
+              <li><%= link_to "お気に入り一覧", user_favorites_path(current_user) %></li>
               <li><%= link_to "プロフィール編集", edit_user_path(current_user) %></li>
               <li><%= link_to "パスワード変更", edit_password_path(current_user) %></li>
               <li class= "divider"></li>

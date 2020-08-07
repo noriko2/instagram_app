@@ -1,5 +1,5 @@
 <li id= "micropost-<%= micropost.id %>">
-　<%= link_to image_tag("user_img.jpeg", alt: "user_img", width: "50px"), micropost.user %>
+  <%= link_to image_tag("user_img.jpeg", alt: "user_img", width: "50px"), micropost.user %>
   <span class= "user">
     <%= link_to( micropost.user.user_name, micropost.user )%>
   </span>
@@ -14,5 +14,12 @@
       <%= link_to  "投稿を削除", micropost, method: :delete,
                      data: { confirm: "本当に投稿を削除してもいいですか?"} %>
     <% end %>
-    </span>
+  </span>
+  <span class= "favorite">
+    <% if micropost.bookmarked_by(current_user) %>
+      <%= link_to "お気に入りを削除", micropost_favorite_path(micropost.id, micropost.bookmarked_by(current_user).id), method: :delete %>
+    <% else %>
+      <%= link_to "お気に入りに追加", micropost_favorites_path(micropost.id), method: :post %>
+    <% end %>
+  </span>
 </li>

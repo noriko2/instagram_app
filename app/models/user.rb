@@ -4,6 +4,14 @@ class User < ApplicationRecord
   # dependent: :destroy --ユーザーが削除されたときに、そのユーザーが投稿したマイクロポストも一緒に削除する
   has_many :microposts, dependent: :destroy
 
+  has_many :favorites, dependent: :destroy
+
+  # これを記載することで、 user.favorite_microposts でお気に入り投稿一覧が取得できる
+  # favorite_micropostsにした理由は、上ですでにmicropostsという名前を使っているため。
+  # sourceは「参照元のモデル」をさすオプション
+  has_many :favorite_microposts, through: :favorites, source: :micropost
+
+
   # 能動的関係に対して1対多（has_many）の関連付けを実装
   ## class_name: "Relationship"と記載しないと、デフォルト規約のActiveRelationshipモデルを探しに行ってしまう
     ## has_many :active_relationships　　　　　　　　　　　　　　　　　 =>  デフォルト class_name: "#{Model Name}s" =>ActiveRelationshipクラスへ

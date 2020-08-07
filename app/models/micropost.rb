@@ -6,6 +6,9 @@ class Micropost < ApplicationRecord
   #マイクロポストがユーザーに所属する（belongs_to）関連付け
   belongs_to :user
 
+  has_many :favorites, dependent: :destroy
+
+
   validates :image, presence: true
 
   # Micropostモデルのimageカラムと、アップローダーImageUploaderを紐付け
@@ -27,6 +30,10 @@ class Micropost < ApplicationRecord
   #contentカラムのバリデーション
   validates :content, presence: true,
                         length: { maximum: 140 }
+
+  def bookmarked_by(user)
+    Favorite.find_by(user_id: user.id, micropost_id: self.id)
+  end
 
   # 表示用のリサイズ済み画像を返す
   #def display_image

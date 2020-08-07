@@ -20,9 +20,14 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
+    resources :favorites, only: [:index]
   end
 
-  resources :microposts
+  resources :microposts do
+    resources :favorites, only: [:create, :destroy]
+  end
+
   resources :relationships, only: [:create, :destroy]
   resources :password, only: [:edit, :update]
+
 end
