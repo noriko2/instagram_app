@@ -44,8 +44,21 @@ class MicropostsController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
+  def search
+    #Viewのformで取得したパラメータをモデルに渡す
+    #下記のself.searchメソッドは、micropostモデルで定義したもの
+    @microposts = Micropost.search(params[:search])
+    #@microposts = Micropost.search(search_params)　<==検索が失敗する
+    if @microposts
+      render 'search'
+    else
+      flash[:notice] = "該当がありませんでした。"
+    end
+  end
+
 
   private
+
     def micropost_params
       params.require(:micropost).permit(:content, :image)
     end
@@ -54,4 +67,11 @@ class MicropostsController < ApplicationController
       @micropost = current_user.microposts.find_by(id: params[:id])
       redirect_to root_url if @micropost.nil?
     end
+
+    # うまくいかない
+    #def search_params
+    #  params.permit(:search)
+    #nd
+
+
 end

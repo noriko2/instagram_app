@@ -37,6 +37,13 @@ class Micropost < ApplicationRecord
     Favorite.find_by(user_id: user.id, micropost_id: self.id)
   end
 
+  def self.search(search)
+    if search
+      # LIKE '検索文字' で、文字列検索を行う
+      Micropost.where(['content LIKE ?', "%#{search}%"])
+    end
+  end
+
   # 表示用のリサイズ済み画像を返す
   #def display_image
   #  image.variant(resize_to_fill: [400, 400])

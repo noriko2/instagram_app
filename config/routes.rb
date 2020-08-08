@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  #search_path が使えるようになる
+  get '/search', to: 'microposts#search'
+
 
   #resources :users も含まれる
   #/users/1/following や /users/1/followers のURLを作成

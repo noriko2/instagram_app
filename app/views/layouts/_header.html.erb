@@ -3,8 +3,14 @@
     <%= link_to "Instagram", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home", root_path %></li>
         <% if logged_in? %>
+          <li><%= render "microposts/search" %></li>
+        <% end %>
+
+        <li><%= link_to "Home", root_path %></li>
+
+        <% if logged_in? %>
+
           <li><%= link_to "投稿", new_micropost_path %></li>
           <li><%= link_to "ユーザー一覧", users_path %></li>
           <li class="dropdown">

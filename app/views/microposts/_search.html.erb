@@ -1,0 +1,4 @@
+<!-- 検索フォーム -->
+<%= form_with( url: search_path, method: :get, local: true) do |f| %>
+  <%= f.text_field :search, placeholder: "投稿を検索" %>
+<% end %>

@@ -4,7 +4,7 @@
 ## db/seeds.rb(seedデータ)--データベースに投入する初期データのこと
 
 
-# 管理者（管理者権限を持つユーザー）を1人作成する
+# 管理者（管理者権限を持つユーザー）を1人作成
 User.create!(full_name: "Kanri Sya",
              user_name: "kanrisya_123",
                  email: "kanrisya@example.com",
@@ -16,7 +16,20 @@ User.create!(full_name: "Kanri Sya",
                  phone: "09000000000",
                 gender: 2)
 
-#追加のユーザーをまとめて作成する
+
+# 一般ユーザーを1人作成
+User.create!(full_name: "Wan wanko",
+             user_name: "wanko_123",
+                 email: "wanko@example.com",
+              password:             "foobar",
+              password_confirmation: "foobar",
+          introduction: "ワンコです。美しい毛並みが自慢です。",
+               website: "https://www.wanko_sample.com",
+                 phone: "09011111111",
+                gender: 1)
+
+
+#追加のユーザーをまとめて作成
 30.times do |n|
   full_name = Faker::Name.name
   user_name = "#{full_name}_123"
@@ -32,6 +45,14 @@ User.create!(full_name: "Kanri Sya",
 end
 
 
+# wankoのマイクロポストを生成
+user = User.find_by(user_name: "wanko_123")
+content = "おいしい飲み物見つけた！"
+image = open("./app/assets/images/sample_image.jpeg")
+user.microposts.create!(content: content, image: image)
+
+
+
 # ユーザーの一部を対象にマイクロポストを生成する
 users = User.order(:created_at).take(6)
 10.times do
@@ -41,6 +62,7 @@ users = User.order(:created_at).take(6)
   #image = open "#{Rails.root}/test/fixtures/kitten.jpg"
   #users.each { |user| user.microposts.create!(content: content, image: image)}
 end
+
 
 # 以下のリレーションシップを作成する
 users = User.all
