@@ -1,3 +1,7 @@
+<!-- yield の中身 -->
+<!-- ログインしているかどうかで画面の表示を変える-->
+
+
 <% if logged_in? %>
   <% provide(:title, "みんなの投稿") %>
   <div class= "col-md-8">
@@ -15,5 +19,5 @@
 
   <%= link_to image_tag("Instagram_logo.jpeg", alt: "Instagram logo", width: "200px"),
                         "#URL" %>
-                        
+
 <% end %>

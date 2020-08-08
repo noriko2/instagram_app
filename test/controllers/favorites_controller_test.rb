@@ -11,6 +11,7 @@ class FavoritesControllerTest < ActionDispatch::IntegrationTest
       post micropost_favorites_path(@micropost)
       # => favoritesコントローラのcreateアクションへ
     end
+    assert_redirected_to login_url
   end
 
   test "destroy should require logged-in user" do
@@ -18,6 +19,7 @@ class FavoritesControllerTest < ActionDispatch::IntegrationTest
       delete micropost_favorite_path(@micropost, @user.id)
       # => favoritesコントローラのdestroyアクションへ
     end
+    assert_redirected_to login_url
   end
 
 end

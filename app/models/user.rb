@@ -11,6 +11,8 @@ class User < ApplicationRecord
   # sourceは「参照元のモデル」をさすオプション
   has_many :favorite_microposts, through: :favorites, source: :micropost
 
+  has_many :comments, dependent: :destroy
+
 
   # 能動的関係に対して1対多（has_many）の関連付けを実装
   ## class_name: "Relationship"と記載しないと、デフォルト規約のActiveRelationshipモデルを探しに行ってしまう

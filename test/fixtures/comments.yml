@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+doglove_comment:
+  comment: "イヌ可愛い"
+  user: foo
+  micropost: ants
+  created_at: <%= 3.years.ago %>
+  # ants は、wankoさんの投稿
+
+catlove_comment:
+  comment: "ネコ可愛い"
+  user: foo
+  micropost: zone
+  created_at: <%= 10.minutes.ago %>
+  # zoneは 、archerさんの投稿
+
+most_recent_comment:
+  comment: "Writing a short test"
+  user: foo
+  micropost: zone
+  created_at: <%= Time.zone.now %>

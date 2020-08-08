@@ -17,8 +17,11 @@ class FavoritesController < ApplicationController
 
   def destroy
     @favorite = Favorite.find_by(user_id: current_user.id, micropost_id: params[:micropost_id])
-    if @favorite.destroy
-      redirect_to microposts_path
+    #本人がコメントしたコメントのみ削除できる
+    if @favorite && (current_user.id == @favorite.user_id)
+      if @favorite.destroy
+        redirect_to microposts_path
+      end
     end
   end
 

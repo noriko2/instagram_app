@@ -22,4 +22,21 @@
       <%= link_to "お気に入りに追加", micropost_favorites_path(micropost.id), method: :post %>
     <% end %>
   </span>
+
+  <br>
+  <span class= "comment">
+    <!-- render に「 micropost: micropost 」と記入することで パーシャル先に変数を渡せる-->
+    <%= render 'comments/comment_list', micropost: micropost %>
+    <section class="comment_form">
+     <%= form_with(model: [micropost, Comment.new], local: true) do |f| %>
+       <%= f.hidden_field :micropost_id, value: micropost.id %>
+       <div class="field">
+         <%= f.text_area :comment, placeholder: "コメントする" %>
+       </div>
+
+        <%= f.submit "コメントを投稿", class: "btn btn-primary" %>
+     <% end %>
+    </section>
+  </span>
+
 </li>
