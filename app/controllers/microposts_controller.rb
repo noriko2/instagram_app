@@ -9,7 +9,7 @@ class MicropostsController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @feed_items = current_user.my_feed
+    @feed_items = @user.my_feed
     #@microposts = @user.microposts.all
   end
 
