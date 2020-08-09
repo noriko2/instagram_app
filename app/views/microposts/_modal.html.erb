@@ -1,0 +1,20 @@
+<!--モーダル-->
+  <!--class="modal fade  ....実際にモーダルとして表示される部分-->
+  <!-- modalボタンのdata-target="〇〇"は、下記のid="exampleModal-<%= micropost.id %>"を探しに行く-->
+
+
+<div class="modal fade" id="exampleModal-<%= micropost.id %>" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+
+        <%= render 'microposts/micropost', micropost: @micropost %>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -60,20 +60,7 @@
       <ol id= "micropost-<%= micropost.id %>">
         <span class= "content">
 
-          <!-- Button trigger modal -->
-        　  <!--data-targetで、「-<%= micropost.id %>」を付けないと
-            　　　　全て同じモーダル呼び出し名、モーダル表示名になり、ボタン起動時に、正しくデータが取得できなくなる。
-          　　　　　結果、どの写真をクリックしても１枚目のデータが表示されてしまう。-->
-
-          <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                  data-target="#exampleModal-<%= micropost.id %>" >
-            <%= image_tag micropost.image.url(:medium) if micropost.image %>
-          </button>
-
-          <% @micropost = micropost %>
-          <!-- Modal -->
-          <%= render 'microposts/modal', micropost: @micropost %>
-
+          <%= image_tag micropost.image.url(:medium) if micropost.image %>
         </span>
       </ol>
     </div>

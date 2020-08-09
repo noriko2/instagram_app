@@ -19,7 +19,7 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     @user.microposts.each do |micropost|
       if micropost.image
         assert_select 'div.flexbox'
-        assert_select 'span.content>img'
+        assert_select 'button.btn>img'
       end
     end
   end
