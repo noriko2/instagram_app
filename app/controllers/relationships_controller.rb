@@ -24,10 +24,10 @@ class RelationshipsController < ApplicationController
     current_user.unfollow(@user)
         # RelationshipsコントローラでAjaxリクエストに対応
         #ブロック内のコードのうち、どちらか1行が実行される
-    respond_to do |format|
-      format.html { redirect_to @user }
-      format.js
-    end
-      #redirect_to user
+    #respond_to do |format|
+    #  format.html { redirect_to @user }
+    #  format.js
+    #end
+    redirect_to @user
   end
 end

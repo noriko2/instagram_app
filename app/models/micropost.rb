@@ -37,7 +37,7 @@ class Micropost < ApplicationRecord
     Favorite.find_by(user_id: user.id, micropost_id: self.id)
   end
 
-  def self.search(search)
+  def self.search(search) #クラスメソッド(.new不要で使える)
     if search
       # LIKE '検索文字' で、文字列検索を行う
       Micropost.where(['content LIKE ?', "%#{search}%"])

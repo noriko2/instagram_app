@@ -44,11 +44,12 @@ class MicropostsController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
+
   def search
     #Viewのformで取得したパラメータをモデルに渡す
     #下記のself.searchメソッドは、micropostモデルで定義したもの
     @microposts = Micropost.search(params[:search])
-    #@microposts = Micropost.search(search_params)　<==検索が失敗する
+    #@microposts = Micropost.search(search_params)#　<==検索が失敗する
     if @microposts
       render 'search'
     else
@@ -69,9 +70,11 @@ class MicropostsController < ApplicationController
     end
 
     # うまくいかない
-    #def search_params
-    #  params.permit(:search)
-    #nd
+      #def search_params
+        #params.permit(:search)
+        #params.require(:search).permit(:search)
+      #end
+
 
 
 end
