@@ -1,6 +1,6 @@
 <p>検索結果</p>
 
-<% if @microposts.any? %>
+<% if @microposts && @microposts.any? %>
   <ol class= "microposts">
     <%= render @microposts %>
   </ol>

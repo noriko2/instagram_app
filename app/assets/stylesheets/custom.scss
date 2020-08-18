@@ -65,6 +65,11 @@ p {
 
 
 /* header */
+#search_words_content{
+  width: 200px;
+  margin-top: 15px;
+  margin-left: 20px;
+}
 
 #logo {
   float: left;
@@ -79,6 +84,27 @@ p {
 #logo:hover {
   color: #fff;
   text-decoration: none;
+}
+
+.navbar-right {
+  display: inline-block;
+  display: flex;
+  height: 60px;
+  margin-left: 20px;
+  margin-bottom: 0px;
+}
+
+.user_image_icon {
+  border-radius: 30px;
+}
+
+/*アイコン */
+.n-circle {
+  position: absolute;
+  padding-left: 2.5rem;
+  padding-top: 0rem;
+  margin-top: -12px;
+  color: #337AB7;
 }
 
 

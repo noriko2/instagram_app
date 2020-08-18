@@ -6,6 +6,12 @@ ruby '2.6.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3'
 
+# fontawesome が使えるようにする
+gem 'font-awesome-sass'
+
+# Rails用のデバックツール
+# gem 'pry-rails'
+
 # Google Analytics (アクセス解析) を追加
 gem 'google-analytics-rails', '~>1.1.1'
 

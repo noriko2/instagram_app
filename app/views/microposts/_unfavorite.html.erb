@@ -1,0 +1,7 @@
+<!-- お気に入りを削除するリンク -->
+<%= link_to( micropost_favorite_path(micropost.id, micropost.bookmarked_by(current_user).id), method: :delete, remote: true) do %>
+  <div class="icons favorite_icon">
+    <!--黒塗りアイコン-->
+    <i class="fas fa-bookmark" style="font-size: 2em;" aria-hidden="true"></i>
+  </div>
+<% end %>

@@ -13,6 +13,10 @@ class User < ApplicationRecord
 
   has_many :comments, dependent: :destroy
 
+  # 紐付ける名前とクラス名が異なるため、明示的にクラス名とIDを指定して紐付け
+  has_many :active_notifications,  class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+
 
   # 能動的関係に対して1対多（has_many）の関連付けを実装
   ## class_name: "Relationship"と記載しないと、デフォルト規約のActiveRelationshipモデルを探しに行ってしまう
@@ -20,18 +24,20 @@ class User < ApplicationRecord
     ## has_many :active_relationships, class_name: "Relationship" =>　デフォルトのclass_name上書き 　　　　　　　　=>Relationshipクラスへ
   ##デフォルト　foreign_key: "user_id" <--class User < ApplicationRecordのuser
     ##foreign_key: "follower_id"とすることでデフォルトを上書き
+  ## @user.active_relationshipsとすると、@userがフォローしているユーザー全員のrelationshipsテーブルの情報が返ってくる
   has_many :active_relationships, class_name: "Relationship",
                                  foreign_key: "follower_id",
                                    dependent: :destroy
 
   has_many :passive_relationships, class_name: "Relationship",
                                   foreign_key: "followed_id",
-                                   dependent: :destroy
+                                    dependent: :destroy
 
   # Userモデルにfollowingメソッドを追加 【 リスト 14.8 】
   # userクラスのインスタンスに対し、active_relationshipsメソッドを実行し、そこで得られたrelationshipテーブルのインスタンスデータそれぞれに対し、
-  # followedメソッドを実行し、その集合を返す 　　(followedメソッドは、modeld/relationshipで定義)
+  # followedメソッドを実行し、その集合を返す 　　(followedメソッドは、model/relationshipで定義)
     # 結果、user.following.include?(other_user)や user.following.find(other_user)などが使えるようになる
+  # @user.following とすると、@userがフォローしているユーザー全員のUsersテーブル情報が返ってくる
   has_many :following, through: :active_relationships, source: :followed
         ## 上記がなくてもfollowingの集合は、手に入るが、followingメソッドを作った方が分かりやすいため、作成
         ## user = User.first
@@ -165,5 +171,16 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
+  #フォロー通知の作成
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ?", current_user.id, self.id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.build(
+                                    visited_id: self.id,
+                                        action: 'follow'
+                                    )
+      notification.save if notification.valid?
+    end
+  end
 
 end

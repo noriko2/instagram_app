@@ -18,10 +18,18 @@
   <span class= "favorite" id="favorite-icon-post-<%= micropost.id.to_s %>" >
     <% if micropost.bookmarked_by(current_user) %>
       <!-- お気に入りを削除 -->
-      <%= render 'microposts/unfavorite', micropost: micropost %>
+      <%= link_to( micropost_favorite_path(micropost.id, micropost.bookmarked_by(current_user).id), method: :delete, remote: true) do %>
+        <div class="icons">
+          <i class="fas fa-bookmark" style="font-size: 2em;" aria-hidden="true"></i>
+        </div>
+      <% end %>
     <% else %>
       <!-- お気に入り登録 -->
-      <%= render 'microposts/favorite', micropost: micropost %>
+      <%= link_to( micropost_favorites_path(micropost.id), method: :post, remote: true) do %>
+        <div class="icons">
+          <i class="far fa-bookmark" style="font-size: 2em;" aria-hidden="true"></i>
+        </div>
+      <% end %>
     <% end %>
   </span>
 

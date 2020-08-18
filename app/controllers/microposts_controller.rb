@@ -44,21 +44,31 @@ class MicropostsController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
-
+  #Viewのformで取得したパラメータをモデルに渡す
+  #下記のself.searchメソッドは、micropostモデルで定義したもの
+  # @microposts = Micropost.search(params[:search_words][:content])だとストロングパラメータがなく、
+  #  whereメソッドで検索されたくないことも検索されてしまうためNG
   def search
-    #Viewのformで取得したパラメータをモデルに渡す
-    #下記のself.searchメソッドは、micropostモデルで定義したもの
-    @microposts = Micropost.search(params[:search])
-    #@microposts = Micropost.search(search_params)#　<==検索が失敗する
-    if @microposts
-      render 'search'
+    @microposts = Micropost.search(search_params)
+    if !@microposts.empty? #配列が空の場合を除外( if @microposts とすると、@micropostsの配列が空の場合を除外できない)
+      return
     else
       flash[:notice] = "該当がありませんでした。"
     end
+    # render 'search' に行く。 #app/views/microposts/search.html.erbへ
   end
 
 
   private
+    def search_params
+      params.require(:search_words).permit(:content)
+    end
+    # where メソッドで値だけ検索するために、:contentの値を取り出す。
+    #   WHERE (content LIKE '%飲み物"%') となり、検索に成功する。
+    # これをしないと、WHERE (content LIKE '%{"content" => "飲み物"}%')というように
+    #   ハッシュを検索してしまい、結果空の集合[]が返されてしまう
+    #　NG　search_params = params[:search_words][:content]
+    # 　　　一見良さそうに見えるが、攻撃されてしまう
 
     def micropost_params
       params.require(:micropost).permit(:content, :image)
@@ -69,11 +79,6 @@ class MicropostsController < ApplicationController
       redirect_to root_url if @micropost.nil?
     end
 
-    # うまくいかない
-      #def search_params
-        #params.permit(:search)
-        #params.require(:search).permit(:search)
-      #end
 
 
 

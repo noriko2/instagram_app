@@ -11,17 +11,31 @@ class FavoritesController < ApplicationController
   def create
     @favorite = current_user.favorites.build(micropost_params)
     if @favorite.save
-      redirect_to microposts_path
+      #「投稿をお気に入り」 を押したタイミングで通知レコードを作成
+      @micropost = Micropost.find(params[:micropost_id])
+      @micropost.create_notification_bookmark!(current_user)
+      respond_to do |format|
+        format.html { redirect_to microposts_path }
+        format.js
+      end
+      #redirect_to microposts_path
     end
   end
 
   def destroy
     @favorite = Favorite.find_by(user_id: current_user.id, micropost_id: params[:micropost_id])
-    #本人がコメントしたコメントのみ削除できる
+    #本人が、お気に入り登録した投稿のみ削除できる
     if @favorite && (current_user.id == @favorite.user_id)
       if @favorite.destroy
-        redirect_to microposts_path
+        @micropost = Micropost.find(params[:micropost_id])
+        respond_to do |format|
+          format.html { redirect_to microposts_path }
+          format.js
+        end
       end
+    else
+      #他人のお気に入り登録した投稿を削除しようとした場合は、投稿一覧ページにリダイレクト
+      redirect_to microposts_path
     end
   end
 

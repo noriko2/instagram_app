@@ -1,0 +1,36 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+<div class="col-md-6.mx-auto">
+  <div class="form-inline">
+
+    <strong>
+      <%= link_to image_tag("user_img.jpeg", alt: "user_img", width: "50px"), user_path(visitor) %>
+      <%= link_to(visitor.user_name, user_path(visitor)) %> さんが
+    </strong>
+      <% if notification.action == 'follow' %>
+        <p>あなたをフォローしました</p>
+        <%= time_ago_in_words(notification.created_at).upcase %>
+
+      <% elsif notification.action == 'favorite' %>
+        <%= link_to 'あなたの投稿', notification_path(notification.micropost), style: "font-weight: bold;" %>
+        <p>をお気に入り登録しました</p>
+        <%= time_ago_in_words(notification.created_at).upcase %>
+
+      <% elsif notification.action == 'comment' %>
+        <% if notification.micropost.user_id == visited.id %>
+          <%= link_to "あなたの投稿", notification_path(notification.micropost), style: "font-weight: bold;" %>
+        <% else %>
+          <%= link_to notification_path(notification.micropost) %>
+          <strong><%= notification.micropost.user.user_name %> さんの投稿</strong>
+        <% end %>
+        <p>にコメントしました</p>
+        <p class="text-muted.mb-0">
+           <!--&.(ぼっち演算子)の使い方...オブジェクト&.メソッド-->
+           <!-- レシーバーであるオブジェクトがnilの場合はエラーにならず、nilが返る-->
+           <%= Comment.find_by(id: notification.comment_id)&.comment %>
+        </p>
+        <%= time_ago_in_words(notification.created_at).upcase %>
+    <% end %>
+
+  </div>
+</div>

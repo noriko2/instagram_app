@@ -7,6 +7,8 @@ class RelationshipsController < ApplicationController
     current_user.follow(@user)
         # RelationshipsコントローラでAjaxリクエストに対応
         #ブロック内のコードのうち、どちらか1行が実行される
+    #フォローをしたタイミングで通知レコードを作成
+    @user.create_notification_follow!(current_user)
     respond_to do |format|
       format.html { redirect_to @user }
       format.js
@@ -22,12 +24,13 @@ class RelationshipsController < ApplicationController
   def destroy
     @user = Relationship.find(params[:id]).followed
     current_user.unfollow(@user)
-        # RelationshipsコントローラでAjaxリクエストに対応
-        #ブロック内のコードのうち、どちらか1行が実行される
-    #respond_to do |format|
-    #  format.html { redirect_to @user }
-    #  format.js
-    #end
-    redirect_to @user
+      # RelationshipsコントローラでAjaxリクエストに対応
+      #ブロック内のコードのうち、どちらか1行が実行される
+    respond_to do |format|
+      format.html { redirect_to @user }
+      format.js
+    end
+    #redirect_to @user
   end
+
 end

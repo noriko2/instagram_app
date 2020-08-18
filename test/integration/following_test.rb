@@ -32,7 +32,7 @@ class FollowingTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "should follow auser with Ajax" do
+  test "should follow a user with Ajax" do
     assert_difference '@user.following.count', 1 do
       post relationships_path, xhr: true, params: { followed_id: @other.id}
     end
@@ -46,10 +46,11 @@ class FollowingTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "should unfollow a user eith Ajex" do
+  test "should unfollow a user with Ajex" do
     @user.follow(@other)
     relationship = @user.active_relationships.find_by(followed_id: @other.id)
     assert_difference '@user.following.count', -1 do
+      #xhr: trueを指定することで、AJAXリクエストをテストできる
       delete relationship_path(relationship), xhr: true
     end
   end

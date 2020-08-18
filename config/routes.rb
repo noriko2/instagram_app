@@ -33,5 +33,7 @@ Rails.application.routes.draw do
 
   resources :relationships, only: [:create, :destroy]
   resources :password, only: [:edit, :update]
+  resources :notifications, only: [:index, :show]
+
 
 end

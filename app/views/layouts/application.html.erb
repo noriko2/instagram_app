@@ -8,9 +8,9 @@
     <meta name="description" content="Instagramアカウントを作成、またはアカウントにログイン ― クリエイティブな写真や動画を簡単に撮影・編集して、友達や家族とシェアしよう。">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
      <!-- GoogleAnalyticsでアクセス解析  -->
     <%= analytics_init if Rails.env.production? %>
     <%= render 'layouts/shim' %>

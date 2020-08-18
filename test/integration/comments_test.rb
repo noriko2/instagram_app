@@ -16,7 +16,7 @@ class CommentsTest < ActionDispatch::IntegrationTest
     assert_difference '@user.comments.count', 1 do
       comment = "投稿にコメントしたよ"
       post micropost_comments_path(@micropost, @user),
-              params: {comment: {comment: comment, micropost_id: @micropost.id}}
+             params: {comment: {comment: comment, micropost_id: @micropost.id}}
     end
     assert_redirected_to root_url
   end
@@ -29,7 +29,7 @@ class CommentsTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to root_url
   end
-  
+
 
   test "should not delete otheruser's comment to micropost" do
     log_in_as(@other)
