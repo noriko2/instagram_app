@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_10_092335) do
+ActiveRecord::Schema.define(version: 2020_08_22_091420) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment", null: false
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2020_08_10_092335) do
     t.text "introduction"
     t.string "phone"
     t.integer "gender"
+    t.string "profile_image"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

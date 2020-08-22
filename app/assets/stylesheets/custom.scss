@@ -95,7 +95,7 @@ p {
 }
 
 .user_image_icon {
-  border-radius: 30px;
+  border-radius: 50%;
 }
 
 /*アイコン */
@@ -307,4 +307,9 @@ img {
 /*新規投稿ページ */
 .user_info_item{
   display: flex;
+}
+
+/*プロフィール画像 */
+.profile_image{
+  border-radius: 50%;
 }

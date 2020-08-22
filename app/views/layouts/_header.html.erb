@@ -46,7 +46,11 @@
           <!--マイメニュー-->
           <li class="dropdown">
             <a href='#' class="dropdown-toggle" data-toggle="dropdown">
-              <%= image_tag("user_img.jpeg", alt: "user_img", width: "33px", class: "user_image_icon") %>
+              <% if current_user.profile_image? %>
+                <%= image_tag( current_user.profile_image.url(:small), width: "33px", class: "user_image_icon") %>
+               <% else %>
+                 <%= image_tag( "default_user.jpeg", alt: "default_img", width: "33px", class: "user_image_icon") %>
+               <% end %>
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "マイページ", current_user %></li>

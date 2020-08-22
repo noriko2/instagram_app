@@ -16,6 +16,11 @@
       <%= f.label :user_name, "ユーザーネーム" %>
       <%= f.text_field :user_name, class: 'form-control' %>
 
+      <%= f.label :profile_image, "プロフィール画像" %>
+      <span class="profile_image">
+        <%= f.file_field :profile_image, accept: "image/jpeg, image/png" %>
+      </span>
+
       <%= f.label :website, "ウェブサイト" %>
       <%= f.text_field :website, class: 'form-control' %>
 

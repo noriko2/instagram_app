@@ -14,7 +14,8 @@ User.create!(full_name: "Kanri Sya",
           introduction: "管理人です。よろしくお願いします。",
                website: "https://www.sample.com",
                  phone: "09000000000",
-                gender: 2)
+                gender: 2
+              )
 
 
 # 一般ユーザーを1人作成
@@ -26,7 +27,8 @@ User.create!(full_name: "Wan wanko",
           introduction: "ワンコです。美しい毛並みが自慢です。",
                website: "https://www.wanko_sample.com",
                  phone: "09011111111",
-                gender: 1)
+                gender: 1
+       )
 
 
 #追加のユーザーをまとめて作成

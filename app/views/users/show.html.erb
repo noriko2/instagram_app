@@ -2,7 +2,12 @@
 
 <section class="user_info">
   <h1>
-    <%= image_tag("user_img.jpeg", alt: "user_img", width: "200px") %>
+    <% if @user.profile_image? %>
+      <%= image_tag( @user.profile_image.url(:large),class: "profile_image") %>
+     <% else %>
+       <%= image_tag( "default_user.jpeg", alt: "default_img", width: "200px",class: "profile_image") %>
+     <% end %>
+
     <%= @user.user_name %>
   </h1>
 </section>

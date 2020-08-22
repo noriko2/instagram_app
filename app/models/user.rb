@@ -84,6 +84,11 @@ class User < ApplicationRecord
   validates :phone, presence: true, allow_nil: true
   validates :gender, presence: true, allow_nil: true
 
+  # Micropostモデルのimageカラムと、アップローダーImageUploaderを紐付け
+  # ImageUploaderは app/uploaders/image_uploader.rbのクラスの名前
+  mount_uploader :profile_image, ProfileImageUploader
+
+
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
     #コストパラメータをテスト中は最小にし、本番環境ではしっかりと計算する
