@@ -13,11 +13,9 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_template 'users/edit'
     patch user_path(@user), params: { user: { full_name: '',
                                               user_name: '',
-                                                  email: 'foo@invalid',
-                                               password: 'foo',
-                                               password_confirmation: 'bar' }}
+                                                  email: 'foo@invalid'}}
     assert_template 'users/edit'
-    assert_select 'div.alert', 'The form contains 5 errors'
+    assert_select 'div.alert', 'The form contains 3 error'
   end
 
 
@@ -30,12 +28,13 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     full_name = "Yamada Taro"
     user_name = "Yamada_123"
     email = "yamada@sample.com"
-    #パスワードは入力しなくても情報を更新できるようにする
+    #website、自己紹介、電話番号は入力しなくても情報を更新できるようにする
     patch user_path(@user), params:{ user: { full_name: full_name,
                                              user_name: user_name,
                                                  email: email,
-                                              password: "",
-                                              password_confirmation: "" }}
+                                              website: "",
+                                              introduction: "",
+                                              phone: "" }}
 
     assert_not flash.empty?
     assert_redirected_to @user

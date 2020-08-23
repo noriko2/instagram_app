@@ -19,5 +19,11 @@ module InstagramApp
     # リスト 14.37: JavaScriptが無効になっていたときのための設定
     # 認証トークンをremoteフォームに埋め込む
     config.action_view.embed_authenticity_token_in_remote_forms = true
+
+    #デフォルトのlocaleを日本語に変更
+    config.i18n.default_locale = :ja
+    # i18nの複数ロケールファイルが読み込まれるようpathを通す
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+
   end
 end
