@@ -1,6 +1,6 @@
 <!-- 通知アイコンのパーシャル -->
 
-<%= link_to(notifications_path) do %>
+<%= link_to(notifications_path, class: "notification-icon") do %>
 
   <% if unchecked_notifications.any? %>
   　<div class="fa-stack">

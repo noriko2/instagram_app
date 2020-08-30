@@ -1,6 +1,11 @@
 <% provide(:title, "通知投稿")%>
 
-<h3>リアクションされた投稿</h3>
-<div class= "col-md-8">
-  <%= render 'microposts/micropost', micropost: @micropost %>
+
+<div class="row">
+  <div class= "col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
+    <h1 class="page_title">リアクションされた投稿</h1>
+      <div class= "reaction">
+        <%= render 'microposts/micropost', micropost: @micropost %>
+      </div>
+  </div>
 </div>
