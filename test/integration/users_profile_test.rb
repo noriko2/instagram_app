@@ -12,7 +12,7 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     get user_path(@user)
     assert_template 'users/show'
     assert_select 'title',  full_title(@user.user_name)
-    assert_select 'h1', text: @user.user_name
+    assert_select 'p', text: @user.user_name
     #response.bodyにはそのページの完全なHTMLが含まれている（HTMLのbodyタグだけではない）。
     #--そのページのどこかにマイクロポストの投稿数が存在するのであれば、探し出してマッチできる
     assert_match @user.microposts.count.to_s, response.body

@@ -2,10 +2,10 @@ class MicropostsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :edit, :destroy]
   before_action :correct_user, only: :destroy
 
-  def index
-    @microposts = Micropost.all
-    @feed_items = current_user.feed
-  end
+  #def index
+  #  @microposts = Micropost.all
+  #  @feed_items = current_user.feed
+  #end
 
   def show
     @user = User.find(params[:id])

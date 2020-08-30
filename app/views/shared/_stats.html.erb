@@ -2,19 +2,21 @@
 
   <!--現在のユーザーを取得-->
 <% @user ||= current_user %>
-<div class="stats">
-  <a href="<%= following_user_path(@user)%>">
-    フォロー中
-    <strong id="following" class="stat">
-      <%= @user.following.count %>
-    </strong>
-    人
-  </a>
-  <a href="<%= followers_user_path(@user) %>">
-    フォロワー
-    <strong id="following" class="stat">
-      <%= @user.followers.count%>
-    </strong>
-    人
-  </a>
-</div>
+  <li class="follow_status">
+    <a href="<%= following_user_path(@user)%>">
+      フォロー中
+      <strong id="following" class="stat">
+        <%= @user.following.count %>
+      </strong>
+      人
+    </a>
+  </li>
+  <li class="follow_status">
+    <a href="<%= followers_user_path(@user) %>">
+      フォロワー
+      <strong id="following" class="stat">
+        <%= @user.followers.count%>
+      </strong>
+      人
+    </a>
+  </li>

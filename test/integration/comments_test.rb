@@ -12,7 +12,7 @@ class CommentsTest < ActionDispatch::IntegrationTest
 
   test "should comment to micropost if user logged_in" do
 
-    get microposts_path
+    get root_url
     assert_difference '@user.comments.count', 1 do
       comment = "投稿にコメントしたよ"
       post micropost_comments_path(@micropost, @user),
@@ -23,7 +23,7 @@ class CommentsTest < ActionDispatch::IntegrationTest
 
 
   test "should delete userself comment to micropost if user logged_in & userself" do
-    get microposts_path
+    get root_url
     assert_difference '@user.comments.count', -1 do
       delete micropost_comment_path(@micropost.id, @comment.id)
     end
@@ -33,7 +33,7 @@ class CommentsTest < ActionDispatch::IntegrationTest
 
   test "should not delete otheruser's comment to micropost" do
     log_in_as(@other)
-    get microposts_path
+    get root_url
     assert_no_difference '@user.comments.count' do
       delete micropost_comment_path(@micropost.id, @comment.id)
     end

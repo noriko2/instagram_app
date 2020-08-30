@@ -1,5 +1,7 @@
 <% provide(:title, "通知")%>
 
+<h1 class="page_title">お知らせ</h1>
+
 <!--自分の投稿に対するいいね、コメントは通知に表示しない-->
 <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
 <% if notifications.exists? %>
@@ -7,5 +9,5 @@
   <!-- ==>  notifications/_notificationパーシャルへいく-->
 
 <% else %>
-  <p>通知はありません</p>
+  <p class="page_title_response">ありません。</p>
 <% end %>

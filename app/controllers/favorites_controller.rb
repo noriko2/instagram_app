@@ -15,10 +15,9 @@ class FavoritesController < ApplicationController
       @micropost = Micropost.find(params[:micropost_id])
       @micropost.create_notification_bookmark!(current_user)
       respond_to do |format|
-        format.html { redirect_to microposts_path }
+        format.html { redirect_to root_url }
         format.js
       end
-      #redirect_to microposts_path
     end
   end
 
@@ -29,13 +28,13 @@ class FavoritesController < ApplicationController
       if @favorite.destroy
         @micropost = Micropost.find(params[:micropost_id])
         respond_to do |format|
-          format.html { redirect_to microposts_path }
+          format.html { redirect_to root_url }
           format.js
         end
       end
     else
       #他人のお気に入り登録した投稿を削除しようとした場合は、投稿一覧ページにリダイレクト
-      redirect_to microposts_path
+      redirect_to root_url
     end
   end
 

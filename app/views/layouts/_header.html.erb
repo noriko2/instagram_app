@@ -1,16 +1,18 @@
-<header class="navbaar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to "Instagram", root_path, id: "logo" %>
+<header class="navbar-fixed-top navbar-inverse" >
+  <div class= "container">
+    <!-- サイトロゴ -->
+    <%= link_to "Instagram", root_path, id: "logo", class: "item" %>
+
+    <!-- 検索 -->
+    <div class="item">
+      <% if logged_in? %>
+        <%= render "microposts/search" %>
+      <% end %>
+    </div>
+
+    <!-- ナビゲーションバー -->
     <nav>
-
-      <!-- 検索 -->
-      <ul class="nav navbar-nav navbar-center">
-        <% if logged_in? %>
-          <li><%= render "microposts/search" %></li>
-        <% end %>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="item nav navbar-nav main-nav">
         <!-- home -->
         <li>
           <%= link_to(root_path) do %>
@@ -45,7 +47,7 @@
 
           <!--マイメニュー-->
           <li class="dropdown">
-            <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+            <a href='#' class="dropdown-toggle icons" data-toggle="dropdown">
               <% if current_user.profile_image? %>
                 <%= image_tag( current_user.profile_image.url(:small), width: "33px", class: "user_image_icon") %>
                <% else %>
@@ -64,7 +66,7 @@
             </ul>
           </li>
         <% else %>
-          <li><%= link_to "Log in", login_path %></li>
+          <li><%= link_to "Log in", login_path, id: "login_logo" %></li>
         <% end %>
       </ul>
     </nav>

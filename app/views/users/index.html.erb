@@ -1,6 +1,11 @@
 <% provide(:title, "All users")%>
-<h1>全てのユーザー</h1>
 
-<ul class= "users">
-  <%= render @users %>
-</ul>
+<div class="row">
+  <div class= "col-sm-8 col-sm-offset-2">
+    <h1 class="page_title">全てのユーザー</h1>
+
+    <ul class= "users">
+      <%= render @users %>
+    </ul>
+  </div>
+</div>

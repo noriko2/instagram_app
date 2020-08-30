@@ -1,16 +1,16 @@
 <% provide(:title, "新規投稿") %>
-<h1>新規投稿</h1>
 
 <div class="row">
-   <aside class="col-md-4">
-     <section class="user_info_item">
+   <div class="col-sm-8 col-sm-offset-2">
+     <h1 class="page_title">写真を投稿する</h1>
+     <section class="newpost_user_info">
        <% if current_user.profile_image? %>
          <%= link_to( image_tag( current_user.profile_image.url(:large), width: "130px", class: "profile_image"), current_user) %>
         <% else %>
           <%= link_to( image_tag( "default_user.jpeg", alt: "default_img", width: "110px", class: "profile_image"), current_user) %>
         <% end %>
 
-       <h1><%= current_user.user_name %></h1>
+       <p class="newpost_user_name"><%= current_user.user_name %></p>
      </section>
 
      <section class="micropost_form">
@@ -41,5 +41,5 @@
        </script>
 
      </section>
-   </aside>
+   </div>
 </div>

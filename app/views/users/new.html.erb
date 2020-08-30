@@ -1,9 +1,10 @@
 <% provide(:title, 'Sign up') %>
 
-<h1>Sign up</h1>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6 column-space" style="background:white; border:1px solid #dae5f0;">
+    <h1>Sign up</h1>
     <!--@userをform_withに渡すと、/usersへHTTPのPOSTリクエスト送信すると認識される===>createアクションが反応 -->
     <%= form_with(model: @user, local: true) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
@@ -26,4 +27,6 @@
       <%= f.submit "登録する", class: "btn btn-primary" %>
     <% end %>
   </div>
+  <div class="col-sm-3"></div>
+
 </div>

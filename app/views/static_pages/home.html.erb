@@ -1,23 +1,25 @@
 <!-- yield の中身 -->
 <!-- ログインしているかどうかで画面の表示を変える-->
 
-
 <% if logged_in? %>
   <% provide(:title, "みんなの投稿") %>
-  <div class= "col-md-8">
-    <h3>みんなの投稿</h3>
-    <%= render 'shared/feed' %>
+
+  <div class= "row">
+    <div class="col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
+      <h1 class="page_title">みんなの投稿</h1>
+      <%= render 'shared/feed' %>
+    </div>
   </div>
 
 <% else %>
-  <div class="center jumbotron">
-    <h1>Instagramへようこそ</h1>
-    <h2>日常を投稿して世界中の人と繋がろう</h2>
 
-    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-  </div>
+    <div class="center jumbotron"
+         style="background-color:rgba(255,255,255,0.8);" >
+      <h1>Instagramへようこそ</h1>
+      <h2>日常を投稿して世界中の人と繋がろう</h2>
 
-  <%= link_to image_tag("Instagram_logo.jpeg", alt: "Instagram logo", width: "200px"),
-                        "#URL" %>
-
+      <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+    </div>
+    <!--<%= link_to image_tag("Instagram_logo.jpeg", alt: "Instagram logo", width: "200px"),
+                          "#URL" %>-->
 <% end %>
