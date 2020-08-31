@@ -125,10 +125,11 @@ header{
 header .container {
   display: flex;
   justify-content: space-between;
-  max-width: 1000px;
-  height: 49px;
+  max-width: 1145px;
+  height: 52px;
   margin: 3px auto;
-  padding: 0 10px;
+  padding: 0px;
+  align-items: center;
 }
 
 #logo {
@@ -142,54 +143,57 @@ header .container {
   text-decoration: none;
 }
 
-#login_logo {
-  display: inline-flex;
-  width: 70px;
-  margin-top: 8px;
-}
-
-
 #search_words_content{
   width: 200px;
   margin-bottom: 0;
-  margin-top: 3px;
 }
 
 @media screen and (max-width: 600px){
-#search_words_content {width: 100px}
+#search_words_content {width: 120px}
 }
 
 .main-nav {
   display: flex;
-  width: 259px;
+  width: 225px;
+  align-items: center;
+  justify-content: flex-end;
+
 }
 .main-nav li a{
-  padding: 0 0 0 15px;
-  display: inline-block;
+  padding: 0;
   font-size: 13px;
 }
 
-.user_image_icon {
-  border-radius: 50%;
-  width: auto;
-  height: 28px;
+.icon {
+  width: 45px;
+}
+.notification-icon {
+  width: 45px;
 }
 
-.notification-icon {
-  margin-top: 0px;
-  padding-top: 0px;
-  margin-bottom: 20px;
-  display: block;
-  padding-bottom: 20px;
+
+.user_image_icon {
+  border-radius: 50%;
+}
+
+
+/* 通知アイコンのbell（重ねる時だけ）
+　　これがないとアイコンが下に下がってしまう */
+.notification-bell {
+  margin-top: -10px;
 }
 
 /*通知アイコンの丸*/
-.n-circle {
-  position: absolute;
-  padding-left: 2.5rem;
-  padding-top: 0rem;
-  margin-top: -12px;
+.fa-circle {
+  padding-left: 1.5rem;
+  margin-top: -20px;
   color: #337AB7;
+}
+
+#login_logo {
+  margin-left: 20px;
+  margin-right: 10px;
+  display: block;
 }
 
 
@@ -502,7 +506,7 @@ p.newpost_user_name {
 }
 
 /* ========================================
-    通知ページ
+    通知ページ (お知らせ)
 ========================================= */
 .notification-container {
   display: flex;
@@ -517,6 +521,10 @@ p.newpost_user_name {
 
 .notification-item {
   margin-right: 20px;
+}
+
+.notification-user-img {
+  max-width: 50px;
 }
 
 .notification-item-right {

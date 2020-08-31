@@ -39,6 +39,11 @@ gem 'bcrypt',         '~>3.1.13'
 gem 'faker',           '~>2.1.2'
 #Bootstrapを追加
 gem 'bootstrap-sass', '~>3.4.1'
+
+#will_paginateを追加
+gem 'will_paginate',           '~>3.1.8'
+gem 'bootstrap-will_paginate', '~>1.0.0'
+
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
