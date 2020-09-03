@@ -14,7 +14,9 @@ User.create!(full_name: "Kanri Sya",
           introduction: "管理人です。よろしくお願いします。",
                website: "https://www.sample.com",
                  phone: "09000000000",
-                gender: 2
+                gender: 2,
+             activated: true,
+          activated_at: Time.zone.now
               )
 
 
@@ -27,7 +29,9 @@ User.create!(full_name: "Wan wanko",
           introduction: "ワンコです。美しい毛並みが自慢です。",
                website: "https://www.wanko_sample.com",
                  phone: "09011111111",
-                gender: 1
+                gender: 1,
+             activated: true,
+          activated_at: Time.zone.now
        )
 
 
@@ -43,7 +47,10 @@ User.create!(full_name: "Wan wanko",
                user_name: user_name,
                    email: email,
                 password: password,
-                password_confirmation: password)
+                password_confirmation: password,
+               activated: true,
+            activated_at: Time.zone.now
+            )
 end
 
 

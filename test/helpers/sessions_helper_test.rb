@@ -18,7 +18,7 @@ class SessionsHelperTest < ActionView::TestCase
     assert is_logged_in?
   end
 
-  test "current_user returns nil when remember digest id wrong" do
+  test "current_user returns nil when remember digest is wrong" do
       #ユーザーの記憶ダイジェストが記憶トークンと正しく対応していない場合に現在のユーザーがnilになるかどうかをチェック
     @user.update_attribute(:remember_digest, User.digest(User.new_token))
     assert_nil current_user

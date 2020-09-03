@@ -9,11 +9,13 @@ class UsersController < ApplicationController
 
   def index
     #@users = User.all
-    @users = User.paginate(page: params[:page])
+    #.where(activated: true)..有効でないユーザーは非表示
+    @users = User.where(activated: true).paginate(page: params[:page])
   end
 
   def show
     @user = User.find(params[:id])
+    redirect_to root_url and return unless @user.activated?
     @microposts = @user.microposts.all
   end
 
@@ -26,9 +28,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
       #@user = User.new(params[:user]) ←安全性× Forbidden Attribute Errorが出る
     if @user.save
-      log_in @user
-      flash[:success] = "インスタグラムへようこそ！"
-      redirect_to @user
+      @user.send_activation_email #app/models/user.rbで定義したメソッド
+      flash[:info] = "入力されたメールアドレスにメッセージを送信しました。メールを確認して、登録を完了させてください。"
+      redirect_to root_url
+      #redirect_to @user
       #上記は、redirect_to user_url(@user.id)と同じ
       # => showアクションへ /users/:id
     else

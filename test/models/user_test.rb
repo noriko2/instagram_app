@@ -99,7 +99,7 @@ class UserTest < ActiveSupport::TestCase
         #ダイジェストが存在しない場合のauthenticated?のテスト
         #記憶トークンを空欄のままにしているのは、(リスト 9.17)
         #記憶トークンが使われる前にエラーが発生するので、記憶トークンの値は何でも構わないため
-    assert_not @user.authenticated?('')
+    assert_not @user.authenticated?(:remember, '')
   end
 
   test "associated microposts should be destroyed" do
