@@ -51,7 +51,10 @@ class User < ApplicationRecord
   # (followerメソッドは、modeld/relationshipで定義)
   has_many :followers, through: :passive_relationships, source: :follower
 
-  attr_accessor :remember_token, :activation_token
+  attr_accessor :remember_token,
+                :activation_token,
+                :reset_token
+
   before_save   :downcase_email
   before_create :create_activation_digest
 
@@ -206,6 +209,27 @@ class User < ApplicationRecord
   # 有効化用のメールを送信する
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
+  end
+
+  # パスワード再設定の属性を設定する
+  def create_reset_digest
+    self.reset_token = User.new_token
+    # DBへの問い合わせ　１回
+    update_columns(reset_digest:  User.digest(reset_token), reset_sent_at: Time.zone.now)
+    #下記２行でも良いが、DBへの問い合わせが２回になるため、上記の方が良い
+      # update_attribute(:reset_digest, User.digest(reset_token))
+      # update_attribute(:reset_sent_at, Time.zone.now)
+  end
+
+  # パスワード再設定のメールを送信する
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+    # password_reset(user)...app/mailers/user_mailer.rbで定義したメソッド
+  end
+
+  # パスワード再設定の期限が切れている場合はtrueを返す
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
   end
 
 
