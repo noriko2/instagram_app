@@ -1,0 +1,8 @@
+<% if @feed_items.any? %>
+  <ol class= "microposts">
+    <!-- @feed_itemsの各要素がMicropostクラスを持っていたため、RailsはMicropostのパーシャルを呼び出す。
+    　　　Railsは対応する名前のパーシャルを、渡されたリソースのディレクトリ内から探しにいくことができる。-->
+    <%= render @feed_items %>
+    <!--↑ microposts/_micropost.html.erb パーシャルへGO-->
+  </ol>
+<% end %>

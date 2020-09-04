@@ -1,0 +1,11 @@
+<section class="comment_form">
+ <%= form_with(model: [micropost, @comment], local: true) do |f| %>
+
+   <div class="field">
+     <%= f.text_area :comment, placeholder: "コメントする" %>
+   </div>
+
+    <%= f.submit "コメントを投稿", class: "btn btn-primary" %>
+ <% end %>
+
+</section>

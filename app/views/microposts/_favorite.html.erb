@@ -1,0 +1,7 @@
+<!-- お気に入り登録するリンク -->
+<%= link_to( micropost_favorites_path(micropost.id), method: :post, remote: true) do %>
+  <div class="icons unfavorite_icon">
+    <!-- 白塗りアイコン-->
+    <i class="far fa-bookmark" style="font-size: 2em;" aria-hidden="true"></i>
+  </div>
+<% end %>

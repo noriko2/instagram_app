@@ -1,0 +1,7 @@
+<%= @user.user_name %> さん
+
+Instagram App へようこそ!
+まだアカウント登録は、完了していません。
+登録を完了させるためには、下記のリンクへアクセスしてください。
+
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>

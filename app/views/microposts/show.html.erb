@@ -1,0 +1,8 @@
+<% provide(:title, "ユーザーの投稿")%>
+
+<div class= "row">
+  <div class= "col-sm-8 col-sm-offset-2">
+    <h1 class="page_title"><%= @user.user_name %> の投稿</h1>
+    <%= render 'shared/feed' %>
+  </div>
+</div>

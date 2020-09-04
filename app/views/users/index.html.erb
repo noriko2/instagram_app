@@ -1,0 +1,13 @@
+<% provide(:title, "All users")%>
+
+<div class="row">
+  <div class= "col-sm-8 col-sm-offset-2">
+    <%= will_paginate %>
+    <h1 class="page_title">全てのユーザー</h1>
+
+    <ul class= "users">
+      <%= render @users %>
+    </ul>
+    <%= will_paginate %>
+  </div>
+</div>

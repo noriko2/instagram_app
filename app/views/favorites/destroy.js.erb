@@ -1,0 +1,2 @@
+$('#favorite-icon-post-<%= @micropost.id.to_s %>').
+  html("<%= escape_javascript(render('microposts/favorite', micropost: @micropost)) %>");

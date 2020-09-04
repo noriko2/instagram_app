@@ -1,0 +1,28 @@
+$("#follow_form").html("<%= escape_javascript(render('users/follow')) %>");
+$("#followers").html('<%= @user.followers.count %>');
+
+$('.modal-backdrop').remove();
+
+/*
+#exampleModal-unfollow
+*/
+
+/*
+■ $(#follow_form)というオブジェクトは、「follow_formというCSS idを持つ要素」を指す。
+  フォームそのものを指すものではない。
+  クラスを指す場合は、#の代わりに.を使う。(CSSと同様)
+■　JS-ERbでは、素のJavaScriptとは異なり、組み込みRubyを使うことができる
+■　JS-ERbでRailsのrenderメソッドを使いJavaScriptファイル内にHTMLを挿入する際には、
+　 escape_javascriptメソッドで「JavaScriptのダメ文字」をエスケープする必要がある
+
+■　<2行目>
+　　followersというCSS idを持つフォロワーフォーム全体を
+　　"@user.followers.count"という文字列で置き換える
+■ <３行目>
+  フォロー中」のモーダルボタンを押すと、HTMLファイルに
+  <div class="modal-backdrop fade in"></div>
+  というコードが自動で加わり、
+  フォローをやめるボタンを押した後も残り続けることで、画面が暗くなっていた。
+  そこで、<div class="modal-backdrop fade in"></div>のコードを削除するためのコード
+  $('.modal-backdrop').remove();　を書き込む。
+*/

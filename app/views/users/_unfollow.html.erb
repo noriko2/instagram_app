@@ -1,0 +1,36 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-unfollow">
+  <h5>フォロー中</h5>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal-unfollow" tabindex="-1"
+                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5><%= @user.user_name %> のフォローをやめますか？</h5>
+      </div>
+
+      <div class="modal-body">
+        <%= form_with(model: current_user.active_relationships.find_by(followed_id: @user.id),
+                       html: { method: :delete }, remote: true) do |f| %>
+          <%= f.submit "フォローをやめる", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modalを使わないバージョン
+<%= form_with(model: current_user.active_relationships.find_by(followed_id: @user.id),
+               html: { method: :delete }, remote: true) do |f| %>
+  <%= f.submit "フォロー中", class: "btn", data: {confirm: "フォローを解除していいですか？"} %>
+<% end %>
+-->
