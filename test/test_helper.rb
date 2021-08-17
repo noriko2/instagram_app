@@ -1,7 +1,11 @@
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
+require "minitest/reporters"
+Minitest::Reporters.use!
 
+
+#コントローラー用のテストを記入
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
@@ -10,4 +14,32 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  include ApplicationHelper
+
+  ## Helperメソッドは、テストから呼び出せないため、テスト用は、ここで定義する。
+  ## Helperメソッド名がテストヘルパーとSessionヘルパーで同じにならないようにする（リスト8.30）
+  # テストユーザーがログイン中の場合にtrueを返す
+  def is_logged_in?
+    !session[:user_id].nil?
+  end
+
+  #テストユーザーとしてログインする（ 一時セッション ）
+  def log_in_as(user)
+    session[:user_id] = user.id
+  end
+end
+
+
+
+
+#統合テスト用のメソッドを記入
+class ActionDispatch::IntegrationTest
+      #テストユーザーとしてログインする（ 永続的セッションの有無 ）
+      #password: 'password', remember_me: '1'は、
+      #キーワード引数。第２、第３引数がない場合、デフォルトの値が入力される
+  def log_in_as(user, password: 'password', remember_me: '1')
+    post login_path, params: {session: { email: user.email,
+                                      password: password,
+                                   remember_me: remember_me}}
+  end
 end

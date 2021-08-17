@@ -1,0 +1,46 @@
+<!-- フォローしているユーザー or フォロワーのどちらかを表示するview-->
+
+<% provide(:title, @title) %>
+
+<div class="top-contents">
+
+  <div class="user_profile_image">
+    <% if @user.profile_image? %>
+      <%= image_tag( @user.profile_image.url(:large),class: "profile_image") %>
+     <% else %>
+       <%= image_tag( "default_user.jpeg", alt: "default_img", width: "200px",class: "profile_image") %>
+     <% end %>
+  </div>
+
+  <section class="user_info">
+    <div class="user_name">
+      <p><%= @user.user_name %></p>
+    </div>
+
+    <ul class="status">
+      <!--投稿合計数を表示-->
+      <% if @user.microposts.any? %>
+        <li>
+          投稿 <strong><%= @user.microposts.count %></strong> 件
+        </li>
+      <% end %>
+
+      <!--フォロワーの統計情報を表示-->
+      <%= render 'shared/stats' %>
+    </ul>
+
+    <p><%= link_to "my profile", @user %></p>
+
+  </section>
+</div>
+<!-- top contents ここまで-->
+
+<div class="bottom-contents">
+  <h3 class="follow_contents"><%= @title %></h3>
+  <% if @users.any? %>
+    <ul class="users follow">
+      <%= render @users %>
+    </ul>
+  <% end %>
+</div>
+<!-- bottom contents ここまで-->

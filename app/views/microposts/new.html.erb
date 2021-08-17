@@ -1,0 +1,45 @@
+<% provide(:title, "新規投稿") %>
+
+<div class="row">
+   <div class="col-sm-8 col-sm-offset-2">
+     <h1 class="page_title">写真を投稿する</h1>
+     <section class="newpost_user_info">
+       <% if current_user.profile_image? %>
+         <%= link_to( image_tag( current_user.profile_image.url(:large), width: "130px", class: "profile_image"), current_user) %>
+        <% else %>
+          <%= link_to( image_tag( "default_user.jpeg", alt: "default_img", width: "110px", class: "profile_image"), current_user) %>
+        <% end %>
+
+       <p class="newpost_user_name"><%= current_user.user_name %></p>
+     </section>
+
+     <section class="micropost_form">
+       <%= form_with(model: @micropost, local: true) do |f| %>
+         <!--エラーがある場合は、表示する-->
+         <%= render 'shared/error_messages', object: f.object %>
+         <div class="field">
+           <%= f.text_area :content, placeholder: "説明文を記入" %>
+         </div>
+
+         <span class="image">
+           <%= f.file_field :image, accept: "image/jpeg, image/png" %>
+         </span>
+
+          <%= f.submit "投稿する", class: "btn btn-primary" %>
+       <% end %>
+
+
+       <!--#リスト 13.67: jQueryでファイルサイズをチェック-->
+       <script type="text/javascript">
+         $("#micropost_image").bind("change", function() {
+           var size_in_megabytes = this.files[0].size/1024/1024;
+           if (size_in_megabytes > 5) {
+             alert("Maximum file size is 5MB. Please choose a smaller file.");
+             $("#micropost_image").val("");
+           }
+         });
+       </script>
+
+     </section>
+   </div>
+</div>

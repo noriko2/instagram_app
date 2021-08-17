@@ -1,0 +1,15 @@
+<!--投稿へのコメントを表示-->
+
+<% micropost.comments.each do |comment| %>
+  <span class= "comment_user_name">
+    <%= link_to comment.user.user_name, user_path(comment.user) %>
+  </span>
+  <span>
+    <%= comment.comment %>
+  </span>
+  <% if comment.user == current_user %>
+    <span class= "comment_delete" >
+    <%= link_to "コメントを削除", micropost_comment_path(micropost.id,comment.id), method: :delete %>
+  <% end %>
+  <br>
+<% end %>

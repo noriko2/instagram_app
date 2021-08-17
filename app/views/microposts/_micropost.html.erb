@@ -1,0 +1,75 @@
+<li class="modal_post" id= "micropost-<%= micropost.id %>">
+  <div class="post_top_contents">
+    <div class="post_user_info">
+      <span class= "post_user_image">
+        <% if micropost.user.profile_image? %>
+          <%= link_to( image_tag( micropost.user.profile_image.url(:small), class: "profile_image"), micropost.user) %>
+         <% else %>
+           <%= link_to( image_tag( "default_user.jpeg", alt: "default_img", width: "50px", class: "profile_image"), micropost.user) %>
+         <% end %>
+      </span>
+
+      <span class= "post_user">
+        <%= link_to( micropost.user.user_name, micropost.user )%>
+      </span>
+    </div>
+    <div class= "post_delete">
+      <% if current_user?(micropost.user) %>
+        <%= link_to  "投稿を削除", micropost, method: :delete,
+                       data: { confirm: "本当に投稿を削除してもいいですか?"} %>
+      <% end %>
+      <br>
+    </div>
+  </div>
+
+  <div class= "post_image">
+    <!--.urlがないとエラーになる-->
+    <%= link_to (image_tag micropost.image.url(:medium)), micropost_path(micropost.user) %>
+  </div>
+
+
+  <div class="post_bottom_contents">
+    <div class= "favorite_icon" id="favorite-icon-post-<%= micropost.id.to_s %>" >
+      <% if micropost.bookmarked_by(current_user) %>
+        <!-- お気に入りを削除 -->
+        <%= render 'microposts/unfavorite', micropost: micropost %>
+      <% else %>
+        <!-- お気に入り登録 -->
+        <%= render 'microposts/favorite', micropost: micropost %>
+      <% end %>
+    </div>
+
+    <div class="post_user_content_timestamp_comment">
+      <div class="post_user_and_content">
+        <span class= "post_user">
+          <%= link_to( micropost.user.user_name, micropost.user )%>
+        </span>
+        <span class= "content">
+          <%= micropost.content %>
+        </span>
+      </div>
+      <div class= "timestamp">
+        <%= time_ago_in_words(micropost.created_at) %>前
+      </div>
+
+      <div class= "comment">
+        <!-- render に「 micropost: micropost 」と記入することで パーシャル先に変数を渡せる-->
+        <%= render 'comments/comment_list', micropost: micropost %>
+      </div>
+    </div>
+  </div>
+
+  <div class= "new_comment">
+    <section class="comment_form">
+     <%= form_with(model: [micropost, Comment.new], local: true) do |f| %>
+       <%= f.hidden_field :micropost_id, value: micropost.id %>
+       <div class="field">
+         <%= f.text_area :comment, placeholder: "コメントする" %>
+       </div>
+
+        <%= f.submit "コメントを投稿", class: "btn btn-primary" %>
+     <% end %>
+    </section>
+  </div>
+
+</li>

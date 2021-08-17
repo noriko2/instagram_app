@@ -1,0 +1,48 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+
+<div class="col-md-8 notification-container">
+  <div class="notification-item notification-item-left">
+    <%= link_to image_tag("user_img.jpeg", alt: "user_img", width: "50px", class: "notification-user-img"), user_path(visitor) %>
+  </div>
+  <div class="notification-item notification-item-right">
+    <p>
+      <strong><%= link_to(visitor.user_name, user_path(visitor)) %></strong>
+       さんが&nbsp;
+    </p>
+
+    <% if notification.action == 'follow' %>
+      <p>あなたをフォローしました</p>
+      <p class="text-muted">&nbsp;&nbsp;&nbsp;<%= time_ago_in_words(notification.created_at) %>前</p>
+
+    <% elsif notification.action == 'favorite' %>
+      <p>
+        <strong>
+          <%= link_to 'あなたの投稿', notification_path(notification.micropost) %>
+        </strong>
+        &nbsp;をお気に入り登録しました
+      </p>
+      <p class="text-muted">&nbsp;&nbsp;&nbsp;<%= time_ago_in_words(notification.created_at) %>前</p>
+
+    <% elsif notification.action == 'comment' %>
+      <% if notification.micropost.user_id == visited.id %>
+        <p>
+          <strong><%= link_to "あなたの投稿", notification_path(notification.micropost) %></strong>
+        </p>
+      <% else %>
+        <p>
+        <%= link_to notification_path(notification.micropost) do %>
+          <strong><%= notification.micropost.user.user_name %> さんの投稿</strong>
+        <% end %>
+        </p>
+      <% end %>
+      <p>&nbsp;にコメントしました&nbsp;&nbsp;</p>
+      <p class="text-muted">
+         <!--&.(ぼっち演算子)の使い方...オブジェクト&.メソッド-->
+         <!-- レシーバーであるオブジェクトがnilの場合はエラーにならず、nilが返る-->
+         <%= Comment.find_by(id: notification.comment_id)&.comment %>
+      </p>
+      <p class="text-muted">&nbsp;&nbsp;&nbsp;<%= time_ago_in_words(notification.created_at) %>前</p>
+  <% end %>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<% provide(:title, "お気に入り一覧") %>
+
+<div class="row">
+  <div class= "col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
+    <h1 class="page_title">お気に入りの投稿</h1>
+
+    <% if @favorites.any? %>
+      <div class= "favorites">
+        <!-- @feed_itemsの各要素がMicropostクラスを持っていたため、RailsはMicropostのパーシャルを呼び出す。
+        　　　Railsは対応する名前のパーシャルを、渡されたリソースのディレクトリ内から探しにいくことができる。-->
+        <%= render @favorite_microposts %>
+        <!--↑ microposts/_micropost.html.erb パーシャルへGO-->
+      </div>
+    <% else %>
+      <p class="page_title_response">ありません。</p>
+    <% end %>
+
+  </div>
+</div>

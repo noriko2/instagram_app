@@ -1,0 +1,534 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/* mixins, variables, etc. */
+/* リスト7.2 */
+$gray-medium-light: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+
+
+/* universal */
+body {
+  padding-top: 55px;
+}
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.background-home {
+  padding: 60px 0;
+}
+.background-login {
+  padding: 20px 0;
+}
+
+.column-space {
+  padding: 0 25px 30px 25px;
+}
+.column-space-about-help {
+  padding: 30px 25px 30px 25px;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.5em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: #777;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.item {
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+}
+
+h1.page_title {
+  font-size: 25px;
+  text-align: left;
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 10px;
+}
+
+p.page_title_response {
+  margin-left: 20px;
+}
+
+/* ========================================
+     Responsive
+========================================= */
+
+ /*　画面サイズが600pxからはここを読み込む　*/
+@media ( min-width : 600px ){
+    .flexbox {
+    display: flex;
+    flex-wrap: wrap;
+    }
+  .item {
+    width: 30%;
+  }
+}
+
+
+/* ========================================
+     header
+========================================= */
+
+header{
+  width: auto;
+  height: 55px;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1145px;
+  height: 52px;
+  margin: 3px auto;
+  padding: 0px;
+  align-items: center;
+}
+
+#logo {
+  font-size: 1.7em;
+  color: #fff;
+  font-weight: bold;
+  text-align: left;
+}
+
+#logo:hover {
+  text-decoration: none;
+}
+
+#search_words_content{
+  width: 200px;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 600px){
+#search_words_content {width: 120px}
+}
+
+.main-nav {
+  display: flex;
+  width: 225px;
+  align-items: center;
+  justify-content: flex-end;
+
+}
+.main-nav li a{
+  padding: 0;
+  font-size: 13px;
+}
+
+.icon {
+  width: 45px;
+}
+.notification-icon {
+  width: 45px;
+}
+
+
+.user_image_icon {
+  border-radius: 50%;
+}
+
+
+/* 通知アイコンのbell（重ねる時だけ）
+　　これがないとアイコンが下に下がってしまう */
+.notification-bell {
+  margin-top: -10px;
+}
+
+/*通知アイコンの丸*/
+.fa-circle {
+  padding-left: 1.5rem;
+  margin-top: -20px;
+  color: #337AB7;
+}
+
+#login_logo {
+  margin-left: 20px;
+  margin-right: 10px;
+  display: block;
+}
+
+
+
+/* ========================================
+     footer
+========================================= */
+
+footer {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+}
+footer .container {
+  max-width: 950px;
+  margin-top: 5px;
+  padding-left: 50px;
+}
+
+footer small {
+  float: right;
+  margin-right: 15px;
+}
+
+footer ul {
+  float: left;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
+}
+
+footer ul li :hover {
+  color: #777;
+  text-decoration: none;
+}
+
+
+/* ========================================
+     デバッグ　miscellaneous
+========================================= */
+
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+/* ========================================
+     forms
+========================================= */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
+
+.checkbox {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
+
+/* ========================================
+     Aboutページ　 Helpページ
+========================================= */
+.about-page,
+.help-page {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+
+
+/* ========================================
+     Users index ページ
+========================================= */
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
+  li:last-child {
+    border-bottom: none;
+  }
+}
+
+/* ========================================
+     microposts
+========================================= */
+
+.microposts,
+.modal,
+.favorites,
+.reaction {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0 30px 0;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  li:last-child {
+    border-bottom: none;
+  }
+  .post_user a {
+    display: inline-block;
+    font-weight: bold;
+    color: #333333;
+  }
+  .post_user_image {
+    margin-right: 13px;
+  }
+  .post_user a:hover{
+    text-decoration: none;
+  }
+  .post_delete {
+    margin: auto 0 10px auto;
+  }
+  .post_delete a:hover {
+    text-decoration: none;
+  }
+  .post_image {
+    display: block;
+  }
+  .favorite_icon {
+    text-align: right;
+  }
+  .content {
+    margin-left: 3px;
+  }
+  .timestamp {
+    color: $gray-light;
+  }
+}
+
+.post_top_contents {
+  margin: 10px 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.post_bottom_contents {
+  margin: 10px;
+  .post_user_content_timestamp_comment {
+    text-align: left;
+  }
+}
+
+
+
+
+/* ========================================
+     モーダル 投稿画像
+========================================= */
+.modal li {
+    border-bottom: none;
+}
+
+
+
+/* ========================================
+     コメント
+========================================= */
+.comment_user_name a{
+ color: #333333;
+ font-weight: bold;
+ margin-right: 5px;
+}
+
+.comment_user_name a:hover {
+ color: #333333;
+ text-decoration: none;
+}
+
+.comment_delete a {
+  text-decoration: none;
+}
+
+/* ========================================
+     プロフィール画像
+========================================= */
+
+.profile_image{
+  border-radius: 50%;
+}
+
+/* ========================================
+     マイページ
+========================================= */
+.top-contents {
+  display: flex;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 25px;
+}
+
+.user_profile_image img{
+  width: auto;
+  height: 150px;
+  margin: 30px;
+}
+.user_info{
+  margin: 30px;
+}
+.user_name p {
+  font-size: 25px;
+}
+
+ul.status{
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+}
+ul.status li{
+  margin-right: 15px;
+}
+li.follow_status a {
+  text-decoration: none;
+  color: #333333;
+}
+
+/* モーダルボタンの枠をなくす */
+.bottom-contents .micropost_btn {
+  background-color: transparent;
+  outline: none
+}
+
+.bottom-contents .micropost_btn:hover {
+  opacity: 0.8 ;
+  outline: none;
+}
+
+.bottom-content div.flexbox div.item ol {
+  padding-inline-start: 0;
+}
+
+
+/* ========================================
+     フォロワー一覧 or フォロー一覧ページ
+========================================= */
+
+h3.follow_contents {
+  margin: 35px;
+}
+
+/* ========================================
+     新規投稿ページ
+========================================= */
+
+.newpost_user_info{
+  display: flex;
+  margin-bottom: 20px;
+  width: auto;
+  max-height: 130px;
+}
+
+p.newpost_user_name {
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 100px;
+}
+
+/* ========================================
+     お気に入りの投稿一覧ページ
+========================================= */
+
+.jumbotron {
+  margin-top: 40px;
+}
+
+/* ========================================
+    通知ページ (お知らせ)
+========================================= */
+.notification-container {
+  display: flex;
+  margin: 20px auto;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.notification-container:last-child {
+  border-bottom: none;
+}
+
+.notification-item {
+  margin-right: 20px;
+}
+
+.notification-user-img {
+  max-width: 50px;
+}
+
+.notification-item-right {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: left;
+}

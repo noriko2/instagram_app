@@ -1,0 +1,64 @@
+<% provide(:title, "プロフィールを編集") %>
+
+<h1 class="page_title">プロフィールを編集</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <!--@userをform_withに渡すと、/users/:id へHTTPのPATCHリクエスト送信すると認識される ===> updateアクションが反応 -->
+    <!--new.htmlとデータは同じだが、今回は @usersにデータが入っているため、PATCHリクエスト==> updateアクションとなる -->
+    <!--Railsは、form_with(@user)を使ってフォームを構成すると、@user.new_record?がtrueのときにはPOSTを、falseのときにはPATCHを使う -->
+    <%= form_with(model: @user, local: true) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :full_name, "フルネーム" %>
+      <%= f.text_field :full_name, class: 'form-control' %>
+
+      <%= f.label :user_name, "ユーザーネーム" %>
+      <%= f.text_field :user_name, class: 'form-control' %>
+
+      <%= f.label :profile_image, "プロフィール画像" %>
+      <span class="profile_image">
+        <%= f.file_field :profile_image, accept: "image/jpeg, image/png" %>
+      </span>
+
+      <%= f.label :website, "ウェブサイト" %>
+      <%= f.text_field :website, class: 'form-control' %>
+
+      <%= f.label :introducttion, "自己紹介" %>
+      <%= f.text_field :introduction, class: 'form-control' %>
+
+      <p>ーーー以下、非公開情報ーーーーーーーーーーーーー</p>
+
+      <%= f.label :email, "メールアドレス" %>
+      <%= f.text_field :email, class: 'form-control' %>
+
+      <%= f.label :phone, "電話番号" %>
+      <%= f.text_field :phone, class: 'form-control' %>
+
+      <%= f.label :gender, "性別" %>
+      <li>
+        <%= f.label :gender, "男性" %>
+        <%= f.radio_button :gender, 1 %>
+      </li>
+      <li>
+        <%= f.label :gender, "女性" %>
+        <%= f.radio_button :gender, 2 %>
+      </li>
+      <li>
+        <%= f.label :gender, "答えたくない" %>
+        <%= f.radio_button :gender, 3 %>
+      </li>
+
+      <%= f.submit "更新する", class: "btn btn-primary" %>
+
+    <% end %>
+  </div>
+</div>
+
+<p>
+  <!-- admin権限管理者は、自分以外のユーザーを削除できる、　ろぐいん中のユーザーは自分のアカウントを削除できる-->
+  <% if (current_user.admin? && !current_user?(@user)) || (current_user?(@user) && !current_user.admin?) %>
+    <%= link_to "アカウントを削除", @user, method: :delete,
+              data: { confirm: "本当にアカウントを削除してもいいですか？"} %>
+  <% end %>
+<p>

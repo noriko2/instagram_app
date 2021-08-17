@@ -1,0 +1,17 @@
+<!-- 通知アイコンのパーシャル -->
+
+<%= link_to(notifications_path, class:"notification-1") do %>
+
+  <% if unchecked_notifications.any? %>
+  　<div class="fa-stack">
+      <i class="far fa-bell fa-stack-2x notification-bell" style="font-size: 2em;"></i>
+      <i class="fas fa-circle fa-stack-1x"></i>
+    </div>
+
+  <% else %>
+    <div>
+      <i class="far fa-bell" style="font-size: 2em;"></i>
+    </div>
+  <% end %>
+
+<% end %>

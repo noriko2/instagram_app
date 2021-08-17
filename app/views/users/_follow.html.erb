@@ -1,0 +1,11 @@
+<!--ユーザーをフォローするフォーム-->
+
+<!--form_withを使ってRelationshipモデルオブジェクトを操作-->
+<%= form_with(model: current_user.active_relationships.build, remote: true) do |f| %>
+
+  <div><%= hidden_field_tag :followed_id, @user.id %></div>
+  <!-- 上記を実行すると、<input id="followed_id" name="followed_id" type="hidden" value="3" />というフォーム用HTMLを生成-->
+
+  <%= f.submit "フォローする", class: "btn btn-primary" %>
+
+<% end %>

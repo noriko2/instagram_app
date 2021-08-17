@@ -1,0 +1,13 @@
+<li>
+  <% if user.profile_image? %>
+    <%= link_to( image_tag( user.profile_image.url(:medium), alt: "profile_img", width: "130px",class: "profile_image"), user) %>
+   <% else %>
+     <%= link_to( image_tag( "default_user.jpeg", alt: "default_img", width: "130px", class: "profile_image"), user) %>
+   <% end %>
+
+  <%= link_to( user.user_name, user ) %>
+  <% if current_user.admin? && !current_user?(user) %>
+    <%= link_to "| アカウントを削除", user, method: :delete,
+              data: {confirm: "アカウントを削除して本当にいいですか"} %>
+  <% end %>
+</li>

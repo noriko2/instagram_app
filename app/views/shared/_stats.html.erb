@@ -1,0 +1,22 @@
+<!--フォロワーの統計情報を表示するパーシャル-->
+
+  <!--現在のユーザーを取得-->
+<% @user ||= current_user %>
+  <li class="follow_status">
+    <a href="<%= following_user_path(@user)%>">
+      フォロー中
+      <strong id="following" class="stat">
+        <%= @user.following.count %>
+      </strong>
+      人
+    </a>
+  </li>
+  <li class="follow_status">
+    <a href="<%= followers_user_path(@user) %>">
+      フォロワー
+      <strong id="following" class="stat">
+        <%= @user.followers.count%>
+      </strong>
+      人
+    </a>
+  </li>

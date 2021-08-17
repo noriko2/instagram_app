@@ -1,0 +1,15 @@
+<!--HTMLメイラーのレイアウトやテキストメイラーのレイアウトは,
+                   app/views/layoutsで確認できる-->
+
+<h1>Instagram App</h1>
+
+<p><%= @user.user_name %> さん</p>
+
+<p>
+  Instagram App へようこそ !<br>
+  まだアカウント登録は、完了していません。<br>
+  登録を完了させるためには、下記のリンクへアクセスしてください。
+</p>
+
+<%= link_to "アカウントの有効化", edit_account_activation_url(@user.activation_token,
+                                                           email: @user.email) %>
