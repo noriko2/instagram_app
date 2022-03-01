@@ -22,7 +22,7 @@ gem 'google-analytics-rails', '~>1.1.1'
  ## 1. $ brew install imagemagickをしてimagemagickをインストールする
  ## image_processing--どうやって加工するか、オプション（指示）を与えるためのgem
  ## mini_magick-------imagemagickをrailsで使えるようにするgem(画像を加工するためのgem)
-gem 'image_processing', '~>1.9.3'
+gem 'image_processing', '~>1.12.2'
 gem 'mini_magick', '~>4.9.5'
 
 # carrierwaveの追加
